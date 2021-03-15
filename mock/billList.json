@@ -1,0 +1,93 @@
+
+{
+  "desc": "所有的账单",
+  "billData": [
+    {
+      "id": 1,
+      "billType": "traffic",
+      "title": "交通",
+      "payAmount": 600000,
+      "budgetAmount": 600000
+    },
+    {
+      "id": 2,
+      "billType": "home",
+      "title": "住宿",
+      "payAmount": 6000,
+      "budgetAmount": 3000000
+    },
+    {
+      "id": 3,
+      "billType": "cosmetices",
+      "title": "护肤",
+      "payAmount": 6000,
+      "budgetAmount": 600000
+    }
+  ],
+  "data": [
+    {
+      "id": 1,
+      "title": "上海公交-1046-2021-03-09",
+      "time": "2021-03-09 08:49:07",
+      "billType": "traffic",
+      "type": "pay",
+      "amount": 100
+    },
+    {
+      "id": 2,
+      "title": "周末随心飞-2021版",
+      "time": "2021-03-09",
+      "billType": "traffic",
+      "type": "pay",
+      "amount": 366600
+    },
+    {
+      "id": 3,
+      "title": "餐饮",
+      "time": "2021-03-08",
+      "billType": "food",
+      "type": "pay",
+      "amount": 7000
+    },
+    {
+      "id": 3,
+      "title": "芙丽芳丝洗面奶",
+      "time": "2021-03-08",
+      "billType": "cosmetices",
+      "type": "pay",
+      "amount": 17920
+    },
+    {
+      "id": 4,
+      "title": "通讯",
+      "time": "2021-03-03",
+      "billType": "news",
+      "type": "pay",
+      "amount": 3000
+    },
+    {
+      "id": 5,
+      "title": "住房",
+      "time": "2021-03-10",
+      "billType": "home",
+      "type": "pay",
+      "amount": 230000
+    },
+    {
+      "id": 6,
+      "title": "住房",
+      "time": "2021-02-10",
+      "billType": "home",
+      "type": "pay",
+      "amount": 230000
+    },
+    {
+      "id": 7,
+      "title": "住房",
+      "time": "2021-02-10",
+      "billType": "home",
+      "type": "pay",
+      "amount": 230000
+    }
+  ]
+}

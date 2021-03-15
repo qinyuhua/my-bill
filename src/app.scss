@@ -1,0 +1,58 @@
+
+.button, .button-short {
+  font-size: 36px;
+  color: #fff;
+  margin: 60px;
+  height: 88px;
+  line-height: 80px;
+  background: linear-gradient(308deg, #395cd5 9%, #6080ed 92%);
+  border-radius: 44px;
+  padding: 0;
+  width: auto;
+
+}
+
+.button-short {
+  width: 50%;
+  margin: 60px auto;
+}
+.layout-page__content {
+  min-height: 100px !important;
+  max-height: 90% !important;;
+}
+
+input {
+  height: auto;
+}
+
+.list-lists {
+  background-color: #fff;
+  .list-li {
+    height: 112px;
+    padding: 16px 30px 0 30px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between ;
+    box-sizing: border-box;
+  }
+  .list-li:last-child {
+    border-bottom: none;
+    border-radius: 0 10px;
+  }
+  .list-li .right {
+    font-size: 32px;
+    font-weight: 600;
+  }
+  .list-li .title {
+    font-size: 32px;
+    color: #000;
+  }
+  .list-li .time {
+    font-size: 24px;
+    color: #9b9b9b;
+  }
+  .list-li .income {
+    color: #FC9123;
+  }
+}
+
