@@ -1,7 +1,7 @@
 export default {
   pages: [
-    'pages/billType/index',
     'pages/index/index',
+    'pages/billType/index',
     'pages/billInfo/index',
   ],
   window: {

@@ -72,7 +72,7 @@ export const addZero = (num) => {
   return Number(num) < 10 ? `0${num}` : num;
 };
 
-export const getMonth = (time, type = '') => {
+export const replaceMonth = (time, type = '') => {
   let date = time ? new Date(time) : new Date();
   if (typeof time === 'string') {
     // IOS  new Date 时，获取有问题，需要将. - 替换为/

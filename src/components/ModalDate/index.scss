@@ -1,0 +1,32 @@
+.c-index-date {
+  .index-date-layout .at-float-layout__container {
+    background-color: #f6f6f6;
+    .index-date-year {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .index-date-year-reduce, .index-date-year-add {
+      padding: 0 20px;
+    }
+    .index-date-body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .index-date-button {
+      width: 20%;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      display: inline-block;
+      background-color: #fff;
+      border-radius: 4px;
+      margin: 20px 20px 0 0;
+    }
+    .index-date-button-active {
+      background: linear-gradient(308deg, #395cd5 9%, #6080ed 92%);
+      color: #fff;
+    }
+  }
+}

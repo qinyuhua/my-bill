@@ -2,9 +2,9 @@
   "miniprogramRoot": "dist/",
   "projectname": "my-bill",
   "description": "的个人账单",
-  "appid": "touristappid",
+  "appid": "wx5634609aa853ec7a",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "enhance": false,
     "postcss": false,

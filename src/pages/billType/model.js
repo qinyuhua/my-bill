@@ -7,6 +7,11 @@ export default {
 
   },
   effects: {
+    *fetchQueryAllBooks({ payload, callback }, { call }) {
+      const response = yield call(service.findAllBooks, payload);
+      const { data } = response;
+      if (callback) callback(data);
+    },
     *fetchQueryBillBooks({ payload, callback }, { call }) {
       const response = yield call(service.queryBillBooks, payload);
       const { data } = response;

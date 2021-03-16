@@ -5,7 +5,7 @@ import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui";
 import './index.scss';
 
 const Index = (props, ref) => {
-  const { isOpened, onClose, handleAddBill, handleUpdateBill, currentData } = props;
+  const { isOpened, onClose, handleAddBill, handleUpdateBill, currentData = {} } = props;
 
   const { id, bookName } = currentData;
 

@@ -2,29 +2,30 @@ import React, {forwardRef, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import {View, Button, Text, Image} from '@tarojs/components';
 import { getCurrentInstance } from '@tarojs/taro';
+import {AtIcon} from "taro-ui";
 import { replaceYear, numToFixedTwo, numToFixedTwoAndFormat, addZero } from '@/utils/utils';
 import iconDetail from '@/assets/image/icon-detail.png';
+import iconAdd from '@/assets/image/icon-add.png';
 import ModalAdd from './ModalAdd';
 
 import './index.scss';
-import {AtIcon} from "taro-ui";
 
 const Index = (props, ref) => {
   const { dispatch } = props;
 
   const currentPageUrl = getCurrentInstance().router;
-  const { params: { billType = 'ALL', budgetAmount } } = currentPageUrl;
+  const { params: { billType = 'ALL' } } = currentPageUrl;
 
+  const [budgetAmount, setBudgetAmount] = useState(currentPageUrl.budgetAmount || 0);
+  const [monthBudgetAmount, setMonthBudgetAmount] = useState(currentPageUrl.monthBudgetAmount || 0);
   const [bookName, setBookName] = useState('');
   const [isOpened, setIsOpened] = useState(false);
   const [allAmount, setAllAmount] = useState(0);
-  // const budgetAmount = 3000000;
   const [list, setList] = useState([]);
   const [currentData, setCurrentData] = useState();
   const [currentDateType, setCurrentDateType] = useState('year');
   const [currentYear, setCurrentYear] = useState('2021');
-  const [currentMonth, setcurrentMonth] = useState('2021');
-
+  const [currentMonth, setcurrentMonth] = useState(3);
 
 
   const handlequeryPayAmount = (type = currentDateType, year = currentYear, month = currentMonth) => {
@@ -32,10 +33,10 @@ const Index = (props, ref) => {
     let endDate = '';
 
     if (type === 'year') {
-
       startDate = new Date(`${year}-01-01`);
       endDate = new Date(`${year}-12-31`);
     } else {
+      console.log(`${year}-${addZero(month)}-01`);
       startDate = new Date(`${year}-${addZero(month)}-01`);
       endDate = new Date(`${year}-${addZero(month)}-${addZero(new Date(year, month, 0).getDate())}`);
     }
@@ -47,11 +48,13 @@ const Index = (props, ref) => {
         endDate: endDate,
       },
       callback: (res) => {
-        console.log(1, res);
         const data = res[0] || {};
         setList(data.lists);
         setBookName(data.bookName);
         setAllAmount(data.allAmount);
+        setBudgetAmount(data.budgetAmount);
+        setMonthBudgetAmount(data.monthBudgetAmount);
+        setCurrentDateType(type);
       }
     })
   };
@@ -62,7 +65,7 @@ const Index = (props, ref) => {
   }, [billType]);
 
   const handleAddbooks = (record = undefined) => {
-    console.log('添加账单');
+    console.log('添加账单', record);
     setIsOpened(true);
     setCurrentData(record);
 
@@ -71,6 +74,18 @@ const Index = (props, ref) => {
 
   const handleAddBill = (params) => {
     console.log(params);
+    if (params._id) {
+      dispatch({
+        type: 'billInfo/fetchUpdate',
+        payload: { ...params },
+        callback: (res) => {
+          console.log(res);
+          setIsOpened(false);
+          handlequeryPayAmount();
+        }
+      });
+      return;
+    }
     dispatch({
       type: 'billInfo/fetchInsert',
       payload: { ...params },
@@ -83,12 +98,16 @@ const Index = (props, ref) => {
   };
 
   const handleClickType = (type) => {
-    setCurrentDateType(type);
-  }
-
+    handlequeryPayAmount(type);
+  };
 
   return (
     <View className='bill-info-index' ref={ref}>
+
+      <View className='index-fab' onClick={() => handleAddbooks()}>
+        <Image src={iconAdd} style={{ width: 40, height: 40 }} />
+      </View>
+
       <View className='bill-info-header'>
         <View className='index-month' onClick={() => setIsOpened(true)}>
           {currentDateType === 'year' ? '2021年' : '2021年3月'}
@@ -109,11 +128,14 @@ const Index = (props, ref) => {
           </View>
 
           <View className='bill-info-percen'>
-            <View className='bill-info-percen-alread' style={{ width: `${allAmount / budgetAmount * 100}%`}} />
+            <View
+              className='bill-info-percen-alread'
+              style={{ width: `${allAmount / (currentDateType === 'year' ? budgetAmount : monthBudgetAmount) * 100 }%`, maxWidth: '100%'}}
+            />
           </View>
           <View className='bill-info-percenVal'>
-            <Text>{numToFixedTwo(allAmount / budgetAmount * 100)}%预算已用</Text>
-            <Text>剩余￥{numToFixedTwoAndFormat(budgetAmount - allAmount)}</Text>
+            <Text>{numToFixedTwo(allAmount / (currentDateType === 'year' ? budgetAmount : monthBudgetAmount) * 100)}%预算已用</Text>
+            <Text>剩余￥{numToFixedTwoAndFormat((currentDateType === 'year' ? budgetAmount : monthBudgetAmount) - allAmount)}</Text>
           </View>
           <View className='bill-info-all'>
             <View className='amt'>
@@ -122,7 +144,7 @@ const Index = (props, ref) => {
             </View>
             <View className='amt'>
               <View>总预算</View>
-              <View className='num'>￥{numToFixedTwoAndFormat(budgetAmount)}</View>
+              <View className='num'>￥{numToFixedTwoAndFormat(currentDateType === 'year' ? budgetAmount : monthBudgetAmount)}</View>
             </View>
 
           </View>
@@ -151,7 +173,9 @@ const Index = (props, ref) => {
         })}
       </View>
 
-      <Button className='button-short' onClick={handleAddbooks}>添加交易</Button>
+      {(!list || list.length === 0) && (
+        <Button className='button-short' onClick={() => handleAddbooks()}>添加交易</Button>
+      )}
 
       {isOpened && (
         <ModalAdd

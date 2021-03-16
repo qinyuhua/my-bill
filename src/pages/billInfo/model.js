@@ -17,6 +17,11 @@ export default {
       const { data } = response;
       if (callback) callback(data);
     },
+    *fetchUpdate({ payload, callback }, { call }) {
+      const response = yield call(service.update, payload);
+      const { data } = response;
+      if (callback) callback(data);
+    },
     *fetchQueryPayAmount({ payload, callback }, { call }) {
       const response = yield call(service.queryPayAmount, payload);
       const { data } = response;

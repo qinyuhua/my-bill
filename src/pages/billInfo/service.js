@@ -20,3 +20,7 @@ export async function queryListGroup(params) {
 export async function insert(params) {
   return post('/billList/insert', params);
 }
+
+export async function update(params) {
+  return post('/billList/update', params);
+}

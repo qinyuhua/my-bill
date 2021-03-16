@@ -1,7 +1,7 @@
 import React, {forwardRef, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { View, Button, Image, Text } from '@tarojs/components';
-import { numToFixedTwo, numToPercentage, numToFixedTwoAndFormat } from '@/utils/utils';
+import { numToFixedTwo, numToPercentage, numToFixedTwoAndFormat, addZero } from '@/utils/utils';
 import Taro  from '@tarojs/taro';
 import IconBill from '@/assets/image/bill.png';
 import ModalAdd from './ModalAdd';
@@ -12,14 +12,32 @@ const Index = (props, ref) => {
 
   const [isOpened, setIsOpened] = useState(false);
   const [currentData, setCurrentData] = useState(false);
-
+  const [type, setType] = useState('year');
+  const [curYear, setCurYear] = useState(2021);
+  const [curMonth, setCurMonth] = useState(3);
   const [accountBooks, setAccountBooks] = useState([]);
 
-  const handleQueryAll = () => {
+  const handleQueryAll = (year = curYear, month = curMonth) => {
     console.log(0, 'handleQueryAll');
+
+    let startDate = '';
+    let endDate = '';
+    if (type === 'year') {
+      startDate = new Date(`${year}-01-01`);
+      endDate = new Date(`${year}-12-31`);
+    } else {
+      console.log(`${year}-${addZero(month)}-01`);
+      startDate = new Date(`${year}-${addZero(month)}-01`);
+      endDate = new Date(`${year}-${addZero(month)}-${addZero(new Date(year, month, 0).getDate())}`);
+    }
+
     dispatch({
       type: 'billType/fetchQueryBillBooks',
-      payload: {},
+      payload: {
+        startDate,
+        endDate,
+        type: 'pay'
+      },
       callback: (res) => {
         console.log(1, res);
         setAccountBooks(res);
