@@ -18,27 +18,13 @@ const Index = (props, ref) => {
   const [showYear, setShowYear] = useState(new Date().getFullYear());
   const [months, setMonths] = useState(new Date().getMonth() + 1);
 
-  console.log(currentYear);
-
   useEffect(() => {
-    console.log(0, 'useEffects');
     if (showYear !== new Date().getFullYear()) {
       setMonths(12);
     } else {
       setMonths(new Date().getMonth() + 1);
     }
   }, [showYear]);
-
-
-  const handleClick = (year, month) => {
-    console.log(0, year, month);
-    // setCurrentYear(year);
-    // setCurrentMonth(month);
-    // setIsOpened(false);
-    // handleQueryPayAmount(year, month);
-    // handleQueryList(year, month);
-    handleClickMonth(year, month);
-  };
 
 
   return (
@@ -65,7 +51,7 @@ const Index = (props, ref) => {
               <View
                 key={key}
                 className={`index-date-button ${key === current && 'index-date-button-active'}`}
-                onClick={() => handleClick(showYear, index + 1)}
+                onClick={() => handleClickMonth(showYear, index + 1)}
               >
                 {index + 1}月
               </View>

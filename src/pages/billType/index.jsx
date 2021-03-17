@@ -12,24 +12,14 @@ const Index = (props, ref) => {
 
   const [isOpened, setIsOpened] = useState(false);
   const [currentData, setCurrentData] = useState(false);
-  const [type, setType] = useState('year');
-  const [curYear, setCurYear] = useState(2021);
-  const [curMonth, setCurMonth] = useState(3);
+  const [curYear] = useState(new Date().getFullYear());
   const [accountBooks, setAccountBooks] = useState([]);
 
-  const handleQueryAll = (year = curYear, month = curMonth) => {
+  const handleQueryAll = (year = curYear) => {
     console.log(0, 'handleQueryAll');
 
-    let startDate = '';
-    let endDate = '';
-    if (type === 'year') {
-      startDate = new Date(`${year}-01-01`);
-      endDate = new Date(`${year}-12-31`);
-    } else {
-      console.log(`${year}-${addZero(month)}-01`);
-      startDate = new Date(`${year}-${addZero(month)}-01`);
-      endDate = new Date(`${year}-${addZero(month)}-${addZero(new Date(year, month, 0).getDate())}`);
-    }
+    const startDate = new Date(`${year}-01-01`);
+    const endDate = new Date(`${year}-12-31`);
 
     dispatch({
       type: 'billType/fetchQueryBillBooks',
@@ -54,8 +44,6 @@ const Index = (props, ref) => {
     setIsOpened(true);
     setCurrentData(undefined);
   };
-
-
 
   const handleAddBill = (params) => {
     console.log(params);

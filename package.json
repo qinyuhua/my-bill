@@ -37,16 +37,16 @@
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.1.1",
+    "@tarojs/react": "3.1.1",
     "@tarojs/runtime": "3.1.1",
     "@tarojs/taro": "3.1.1",
-    "@tarojs/react": "3.1.1",
-    "numeral": "^2.0.6",
-    "react-dom": "^17.0.0",
-    "react": "^17.0.0",
-    "react-redux": "^7.2.2",
-    "redux": "^4.0.5",
     "dva-core": "^2.0.4",
-    "dva-loading": "^3.0.22"
+    "dva-loading": "^3.0.22",
+    "numeral": "^2.0.6",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@types/webpack-env": "^1.13.6",

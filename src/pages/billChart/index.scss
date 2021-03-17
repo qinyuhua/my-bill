@@ -1,0 +1,139 @@
+.bill-chart-index {
+  font-size: 28px;
+  background-color: #fff;
+  min-height: 100vh;
+  position: relative;
+
+  .bill-chart-type {
+    margin: 0 60px;
+    display: flex;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 40px;
+    background-color: #f0f0f0;
+    .bill-chart-month {
+      width: 50%;
+      text-align: center;
+      color: #4a4a4a;
+    }
+    .active {
+      color: #fff;
+      border-radius: 40px;
+      background-color: #6080ed;
+    }
+  }
+  .bill-chart-percen {
+    height: 14px;
+    margin: 20px;
+    background: linear-gradient(180deg,#FAE19C, #F7D97F);
+    border-radius: 6px;
+    .bill-chart-percen-alread {
+      height: 100%;
+      background: linear-gradient(180deg,#FAC421, #F7B21B);
+      border-radius: 6px;
+    }
+  }
+  .bill-chart-percenVal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    color: #777777;
+    margin: 0 20px;
+  }
+  .index-month {
+    height: 80px;
+    line-height: 80px;
+    padding: 0 30px;
+  }
+  .index-payinfo {
+    box-sizing: border-box;
+    margin: 0 30px 15px 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 20px 0 20px;
+    display: flex;
+    justify-content: flex-start;
+    color: #333;
+    text-align: center;
+    border-bottom: 4px solid #f6f6f6;
+  }
+  .index-payinfo .money {
+    font-size: 32px;
+    padding: 20px 0 20px 0;
+  }
+  .index-payinfo .amt {
+    font-size: 50px;
+    font-weight: 600;
+  }
+  .index-left {
+    width: 50%;
+
+  }
+  .index-books {
+    height: 80px;
+    line-height: 80px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #9b9b9b;
+  }
+
+  .bill-chart-lis {
+    background-color: #fff;
+    padding: 30px;
+    .bill-chart-li {
+      display: flex;
+      justify-content: flex-start;
+      height: 100px;
+      margin: 10px 0;
+      position: relative;
+      .number {
+        z-index: 10;
+        color: #000;
+        width: 40px;
+        display: inline-block;
+        text-align: center;
+        line-height: 100px;
+        font-weight: 600;
+        font-size: 26px;
+      }
+      .bill-li-back {
+        border-radius: 10px;
+        background: linear-gradient(134deg, #e9f1f6 20%, #e3f9fd 91%);
+        position: absolute;
+        height: 100px;
+        top: 0;
+        z-index: 0;
+        margin-left: 40px;
+        min-width: 20%;
+      }
+      .bill-li-body {
+        z-index: 10;
+        display: flex;
+        justify-content: space-between;
+        width: calc(100% - 40px);
+      }
+      .bill-li-left {
+        padding-left: 20px;
+        padding-top: 10px;
+        width: 20%;
+        font-weight: 600;
+        .count {
+          font-weight: 500;
+          font-size: 26px;
+          color: #9b9b9b;
+        }
+      }
+
+      .bill-li-right {
+        line-height: 100px;
+        font-weight: 600;
+        color: #000;
+        .rightIcon {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

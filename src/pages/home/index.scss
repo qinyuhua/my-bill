@@ -1,0 +1,15 @@
+.home-layout {
+  .home-lis {
+    display: flex;
+    justify-content: flex-start;
+    .home-li {
+      width: 25%;
+      text-align: center;
+      background-color: #f6f6f6;
+      border-radius: 10px;
+      box-shadow: 0px 2px 4px 0px rgba(216,216,216,0.50);
+      padding: 20px;
+      color: #999999;
+    }
+  }
+}

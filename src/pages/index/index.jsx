@@ -1,7 +1,7 @@
 import React, {forwardRef, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import Taro from '@tarojs/taro';
-import { AtFloatLayout, AtIcon  } from 'taro-ui';
+import { AtIcon  } from 'taro-ui';
 import {View, Text, Image} from '@tarojs/components';
 import { replaceYear, numToFixedTwoAndFormat, addZero } from '@/utils/utils';
 import iconRight from '@/assets/image/icon-right.png';
@@ -9,7 +9,9 @@ import iconAdd from '@/assets/image/icon-add.png';
 import iconbillType from '@/assets/image/icon-bill-type.png';
 import ModalAdd from '@/components/ModalAddBill';
 import ModalDate from '@/components/ModalDate';
-import './index.scss'
+import './index.scss';
+
+const weekArr = ['日', '一', '二', '三', '四', '五', '六' ];
 
 const Index = (props, ref) => {
 
@@ -18,21 +20,11 @@ const Index = (props, ref) => {
   const [dataList, setDataList] = useState();
   const [isOpened, setIsOpened] = useState(false);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  const [showYear, setshowYear] = useState(new Date().getFullYear());
-  const [months, setMonths] = useState();
-  const [currentMonth, setCurrentMonth] = useState(3);
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
 
   const [isOpenedAdd, setIsOpenedAdd] = useState(false);
   const [currentData, setCurrentData] = useState({});
 
-  useEffect(() => {
-    console.log(0, 'useEffects');
-    if (showYear !== new Date().getFullYear()) {
-      setMonths(12);
-    } else {
-      setMonths(new Date().getMonth() + 1);
-    }
-  }, [showYear]);
 
   const handleQueryList = (year = currentYear, month = currentMonth) => {
     console.log(currentYear, currentMonth);
@@ -69,9 +61,6 @@ const Index = (props, ref) => {
     });
   };
 
-
-
-
   useEffect(() => {
     handleQueryPayAmount();
     handleQueryList();
@@ -100,6 +89,10 @@ const Index = (props, ref) => {
   const handleClickUpdate = (record) => {
     setCurrentData({ ...record });
     setIsOpenedAdd(true);
+  };
+
+  const handleGotoCharts = () => {
+    Taro.navigateTo({ url: '/pages/billChart/index'});
   }
 
   return (
@@ -110,7 +103,7 @@ const Index = (props, ref) => {
         <Image src={iconAdd} style={{ width: 40, height: 40 }} />
       </View>
 
-      <View className='index-fab-type'>
+      <View className='index-fab-type' onClick={() => handleGotoCharts()}>
         <Image src={iconbillType} style={{ width: 40, height: 40 }} />
       </View>
 
@@ -118,37 +111,7 @@ const Index = (props, ref) => {
         {currentYear}年{currentMonth}月
         <AtIcon value='chevron-down' size='18' color='#D0D0D0' />
       </View>
-      {/*<AtFloatLayout
-        isOpened={isOpened}
-        onClose={() => setIsOpened(false)}
-        className='index-date-layout'
-      >
-        <View className='index-date-year'>
-          <View className='index-date-year-reduce' onClick={() => setshowYear(showYear - 1)}>
-            <AtIcon value='chevron-left' size='18' color='#D0D0D0' />
-          </View>
-          <View>{showYear}</View>
-          <View className='index-date-year-add' onClick={() => setshowYear(showYear + 1)}>
-            <AtIcon value='chevron-right' size='18' color='#D0D0D0' />
-          </View>
-        </View>
-        <View className='index-date-body'>
-          { new Array(months).fill('').map((item, index) => {
-            const key = `${showYear}${addZero(index+1)}`;
-            const current = `${currentYear}${addZero(currentMonth)}`;
-            return (
-              <View
-                key={key}
-                className={`index-date-button ${key === current && 'index-date-button-active'}`}
-                onClick={() => handleClickMonth(showYear, index + 1)}
-              >
-                {index + 1}月
-              </View>
-            );
-          })}
 
-        </View>
-      </AtFloatLayout>*/}
       { isOpened && (
         <ModalDate
           isOpened={isOpened}
@@ -187,19 +150,19 @@ const Index = (props, ref) => {
         return (
           <View className='list-body'>
             <View className='list-header'>
-              <View>{replaceYear(new Date(item.date), '-')} 星期四</View>
-              <View> 支00 收100</View>
+              <View>{replaceYear(new Date(item.date), '-')} 星期{weekArr[new Date(item.date).getDay()]}</View>
+              <View> 支{numToFixedTwoAndFormat(item.allPayAmount)}&nbsp;&nbsp;收&nbsp;{numToFixedTwoAndFormat(item.allIncomeAmout)}</View>
             </View>
             {item.lists && item.lists.map(lItem => (
               <View className='list-lists' onClick={() => handleClickUpdate(lItem)}>
                 <View className='list-li'>
                   <View>
-                    <View className='title'>{lItem.billTitle}</View>
+                    <View className='title'>{lItem.billTitle || lItem.bookName}</View>
                     <View className='time'>{lItem.bookName}</View>
                   </View>
                   <View className={`right ${lItem.type === 'income' && 'income'}`}>
                     {lItem.type === 'pay' ? '-' : '+'}
-                    {numToFixedTwoAndFormat(lItem.amount)}
+                    {numToFixedTwoAndFormat(lItem.type === 'pay' ? lItem.amount : lItem.income)}
                   </View>
                 </View>
               </View>

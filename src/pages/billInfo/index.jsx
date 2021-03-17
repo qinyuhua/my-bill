@@ -6,6 +6,7 @@ import {AtIcon} from "taro-ui";
 import { replaceYear, numToFixedTwo, numToFixedTwoAndFormat, addZero } from '@/utils/utils';
 import iconDetail from '@/assets/image/icon-detail.png';
 import iconAdd from '@/assets/image/icon-add.png';
+import ModalDate from '@/components/ModalDate';
 import ModalAdd from './ModalAdd';
 
 import './index.scss';
@@ -14,21 +15,23 @@ const Index = (props, ref) => {
   const { dispatch } = props;
 
   const currentPageUrl = getCurrentInstance().router;
-  const { params: { billType = 'ALL' } } = currentPageUrl;
+  const { params: { billType = 'ALL', curDateType = 'month' } } = currentPageUrl;
 
   const [budgetAmount, setBudgetAmount] = useState(currentPageUrl.budgetAmount || 0);
   const [monthBudgetAmount, setMonthBudgetAmount] = useState(currentPageUrl.monthBudgetAmount || 0);
   const [bookName, setBookName] = useState('');
   const [isOpened, setIsOpened] = useState(false);
+  const [isOpenedDate, setIsOpenedDate] = useState(false); // 时间组件
   const [allAmount, setAllAmount] = useState(0);
   const [list, setList] = useState([]);
   const [currentData, setCurrentData] = useState();
-  const [currentDateType, setCurrentDateType] = useState('year');
-  const [currentYear, setCurrentYear] = useState('2021');
-  const [currentMonth, setcurrentMonth] = useState(3);
+  const [currentDateType, setCurrentDateType] = useState(curDateType);
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentMonth, setcurrentMonth] = useState(new Date().getMonth() + 1);
 
 
   const handlequeryPayAmount = (type = currentDateType, year = currentYear, month = currentMonth) => {
+    console.log(0, type, year, month);
     let startDate = '';
     let endDate = '';
 
@@ -48,6 +51,11 @@ const Index = (props, ref) => {
         endDate: endDate,
       },
       callback: (res) => {
+        setIsOpenedDate(false);
+        setCurrentDateType(type);
+        setCurrentYear(year);
+        setcurrentMonth(month);
+
         const data = res[0] || {};
         setList(data.lists);
         setBookName(data.bookName);
@@ -101,6 +109,7 @@ const Index = (props, ref) => {
     handlequeryPayAmount(type);
   };
 
+
   return (
     <View className='bill-info-index' ref={ref}>
 
@@ -109,8 +118,8 @@ const Index = (props, ref) => {
       </View>
 
       <View className='bill-info-header'>
-        <View className='index-month' onClick={() => setIsOpened(true)}>
-          {currentDateType === 'year' ? '2021年' : '2021年3月'}
+        <View className='index-month' onClick={() => setIsOpenedDate(true)}>
+          {currentDateType === 'year' ? `${currentYear}年` : `${currentYear}年${currentMonth}月`}
           <AtIcon value='chevron-down' size='18' color='#D0D0D0' />
         </View>
 
@@ -139,11 +148,11 @@ const Index = (props, ref) => {
           </View>
           <View className='bill-info-all'>
             <View className='amt'>
-              <View>总支出</View>
+              <View>{currentDateType === 'year' ? '年度总支出' : '当月总支出'}</View>
               <View className='num'>￥{numToFixedTwoAndFormat(allAmount)}</View>
             </View>
             <View className='amt'>
-              <View>总预算</View>
+              <View>{currentDateType === 'year' ? '年度总预算' : '当月总预算'}</View>
               <View className='num'>￥{numToFixedTwoAndFormat(currentDateType === 'year' ? budgetAmount : monthBudgetAmount)}</View>
             </View>
 
@@ -185,6 +194,16 @@ const Index = (props, ref) => {
           billType={billType}
           bookName={bookName}
           currentData={currentData}
+        />
+      )}
+
+      { isOpenedDate && (
+        <ModalDate
+          isOpened={isOpenedDate}
+          onClose={() => setIsOpenedDate(false)}
+          handleClickMonth={(year, month) => handlequeryPayAmount(currentDateType, year, month)}
+          currentYear={currentYear}
+          currentMonth={currentMonth}
         />
       )}
 
