@@ -24,6 +24,10 @@
       background-color: #C4DDED;
       color: #6080ed;
     }
+    .c-bill-modal-button {
+      float: right;
+      color: #6080ed;
+    }
   }
   .c-bill-modal-add-amount {
     display: flex;
@@ -64,6 +68,7 @@
     display: flex;
     justify-content: flex-start;
     color: #9b9b9b;
+    margin-bottom: 60px;
   }
   .c-bill-modal-add-remark-input {
     background-color: #f0f0f0;

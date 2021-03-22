@@ -8,7 +8,7 @@ import { ISALIPAYDD, ISH5PLAT } from './platCommon';
 let accountInfo = '';
 let envVersion = 'develop';
 // eslint-disable-next-line
-console.log('request.js', JSON.stringify(process.env), process.env.TARO_ENV);
+console.log('request.js', process.env.TARO_ENV, window.navigator.userAgent.toLowerCase());
 
 // production
 if (['alipay', 'alipay-dd', 'dd'].indexOf(process.env.TARO_ENV) > -1) {

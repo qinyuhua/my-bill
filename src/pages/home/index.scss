@@ -2,12 +2,14 @@
   .home-lis {
     display: flex;
     justify-content: flex-start;
+    padding: 30px;
+
     .home-li {
       width: 25%;
       text-align: center;
       background-color: #f6f6f6;
       border-radius: 10px;
-      box-shadow: 0px 2px 4px 0px rgba(216,216,216,0.50);
+      box-shadow: rgba(216,216,216,0.6) 0px 0px 30px 5px;
       padding: 20px;
       color: #999999;
     }

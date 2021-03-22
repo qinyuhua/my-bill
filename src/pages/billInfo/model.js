@@ -27,8 +27,8 @@ export default {
       const { data } = response;
       if (callback) callback(data);
     },
-    *fetchQueryList({ payload, callback }, { call }) {
-      const response = yield call(service.queryList, payload);
+    *fetchIncomeAmount({ payload, callback }, { call }) {
+      const response = yield call(service.queryIncomeAmount, payload);
       const { data } = response;
       if (callback) callback(data);
     },

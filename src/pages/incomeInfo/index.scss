@@ -1,0 +1,53 @@
+.income-info-index {
+  .income-info-percen {
+    height: 14px;
+    margin: 30px;
+    background: linear-gradient(180deg,#FAE19C, #F7D97F);
+    border-radius: 6px;
+    .income-info-percen-alread {
+      height: 100%;
+      background: linear-gradient(180deg,#FAC421, #F7B21B);
+      border-radius: 6px;
+    }
+  }
+  .income-info-percenVal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    color: #777777;
+    margin: 0 30px;
+  }
+
+
+  .income-info-payinfo {
+    margin: 30px;
+    display: flex;
+    justify-content: flex-start;
+    color: #333;
+    text-align: center;
+    border-bottom: 1px solid #eee;;
+    .money {
+      font-size: 32px;
+      padding: 20px 0 20px 0;
+    }
+    .amt {
+      font-size: 50px;
+      font-weight: 600;
+    }
+    .income-info-left {
+      width: 50%;
+    }
+    .active {
+      border-bottom: 6px solid #6080ed;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .active {
+      transition: transform 0.35s;
+    }
+    //.active {
+    //  transform: translate(-100px,0px);
+    //}
+  }
+
+}

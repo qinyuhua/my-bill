@@ -93,7 +93,11 @@ const Index = (props, ref) => {
 
   const handleGotoCharts = () => {
     Taro.navigateTo({ url: '/pages/billChart/index'});
-  }
+  };
+
+  const handleGotoIncome = () => {
+    Taro.navigateTo({ url: '/pages/incomeInfo/index'});
+  };
 
   return (
     <View className='index' ref={ref}>
@@ -132,7 +136,7 @@ const Index = (props, ref) => {
               <Text className='amt'>{numToFixedTwoAndFormat(total.totalPayAmount)}</Text>
             </View>
           </View>
-          <View>
+          <View onClick={handleGotoIncome}>
             <View>{parseInt(currentMonth, 10)}月总收入</View>
             <View className='money'>
               <Text>￥</Text>

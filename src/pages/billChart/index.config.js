@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '账本统计'
+  navigationBarTitleText: '账单统计'
 }

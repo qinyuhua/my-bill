@@ -149,7 +149,11 @@ const Index = (props, ref) => {
           <View className='bill-info-all'>
             <View className='amt'>
               <View>{currentDateType === 'year' ? '年度总支出' : '当月总支出'}</View>
-              <View className='num'>￥{numToFixedTwoAndFormat(allAmount)}</View>
+              <View
+                className={`num ${allAmount > (currentDateType === 'year' ? budgetAmount : monthBudgetAmount) && 'colorRed'}`}
+              >
+                ￥{numToFixedTwoAndFormat(allAmount)}
+              </View>
             </View>
             <View className='amt'>
               <View>{currentDateType === 'year' ? '年度总预算' : '当月总预算'}</View>
@@ -176,7 +180,8 @@ const Index = (props, ref) => {
                 <View className='title'>{item.billTitle}</View>
                 <View className='time'>{replaceYear(new Date(item.date), '-')}</View>
               </View>
-              <View className='right'>{item.type === 'pay' ? '-' : '+'}{numToFixedTwoAndFormat(item.amount)}</View>
+              {item.type === 'pay' && <View className='right'>-{numToFixedTwoAndFormat(item.amount)}</View>}
+              {item.type === 'income' && <View className='right colorRed'>+{numToFixedTwoAndFormat(item.__v)}</View>}
             </View>
           );
         })}

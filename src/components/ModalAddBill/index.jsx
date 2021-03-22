@@ -17,7 +17,7 @@ const Index = (props, ref) => {
   } = props;
 
 
-  const [amount, setAmount] = useState(currentData.amount / 100);
+  const [amount, setAmount] = useState(currentData && currentData.type === 'pay' ? currentData.amount / 100 : currentData.income / 100);
   const [billTitle, setbillTitle] = useState(currentData.billTitle);
   const [currentType, setCurrentType] = useState(currentData.type || 'pay');
   const [currBillType, setCurrBillType] = useState(currentData.billType || 'ALL');
@@ -26,7 +26,7 @@ const Index = (props, ref) => {
   const [booksList, setBooksList] = useState([]);
 
 
-  console.log(0, currBillType);
+  console.log(0, currBillType, currentData);
 
   const handleQueryAllbooks = () => {
     dispatch({
@@ -53,11 +53,15 @@ const Index = (props, ref) => {
       time: new Date(),
       billType: currBillType,
       type: currentType,
-      amount: parseFloat(amount) * 100,
+
       date,
       month: replaceMonth(date, ''),
     };
-
+    if(currentType === 'pay') {
+      params.amount = parseFloat(amount) * 100;
+    } else {
+      params.__v = parseFloat(amount) * 100;
+    }
     if (params._id) {
       dispatch({
         type: 'billInfo/fetchUpdate',
@@ -108,6 +112,7 @@ const Index = (props, ref) => {
         <View className='c-bill-modal-add-buttons'>
           <Text className={`c-bill-modal-add-type ${currentType === 'pay' && 'current'}`} onClick={() => setCurrentType('pay')}>支出</Text>
           <Text className={`c-bill-modal-add-type ${currentType === 'income' && 'current'}`} onClick={() => setCurrentType('income')}>收入</Text>
+          <Text className='c-bill-modal-button' onClick={handleAdd}>完成</Text>
         </View>
         <View className='c-bill-modal-add-amount'>
           <Text>￥</Text>
@@ -146,9 +151,7 @@ const Index = (props, ref) => {
           </Picker>
 
         </View>
-
-        <Button className='button-short' onClick={handleAdd}>完成</Button>
-
+        {/*<Button className='button-short' onClick={handleAdd}>完成</Button>*/}
       </AtFloatLayout>
     </View>
   )

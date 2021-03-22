@@ -6,6 +6,15 @@ export const ISALIPAYDD = process.env.TARO_ENV === 'alipay' || process.env.TARO_
 export const ISH5PLAT = process.env.TARO_ENV === 'h5';
 export const ISWEAPP = process.env.TARO_ENV === 'weapp';
 
+export const isWeiXin = () => {
+  console.log(2, window.location, window.navigator.platform);
+  if(!window.location && window.navigator.platform !== 'win32'){
+    return true;
+  } else{
+    return false;
+  }
+};
+
 
 export const setTitle = (title = '香溢贷') => {
   if (ISALIPAYDD) {

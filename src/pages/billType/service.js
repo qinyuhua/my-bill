@@ -1,4 +1,5 @@
 import { post } from '@/utils/request';
+import { isWeiXin } from '@/utils/platCommon';
 
 import billBooks from '../../../mock/billBooks.json';
 import billList from '../../../mock/billList.json';
@@ -6,14 +7,20 @@ import billList from '../../../mock/billList.json';
 
 // 查询所有账本名称
 export async function findAllBooks(params) {
-  return post('/billbook/findAllBooks', params);
+
+  if (!isWeiXin()) {
+    return post('/billbook/findAllBooks', params);
+  }
+
+
+  return billBooks;
+
 }
 
 export async function queryBillBooks(params) {
-  // return post('/billbook/findBillBooks', params);
-
-  console.log(params);
-
+  if (!isWeiXin()) {
+    return post('/billbook/findBillBooks', params);
+  }
   function object(a, b) {
     return b.payAmount - a.payAmount;
   }
@@ -26,8 +33,8 @@ export async function queryBillBooks(params) {
     if (new Date(item.date) < new Date(startDate) || new Date(item.date) > new Date(endDate)) {
       return ;
     }
-    allPayAmount += item.amount;
-    allIncomeAmount += item.income;
+    allPayAmount += parseInt(item.amount || 0, 10);
+    allIncomeAmount += parseInt(item.income || 0, 10);
 
     const obj = arr.find(aItem => aItem.billType === item.billType);
     const booksObj = billBooks.data.find(bItem => bItem.billType === item.billType);
@@ -40,8 +47,8 @@ export async function queryBillBooks(params) {
         count: 1
       });
     } else {
-      obj.payAmount += item.amount;
-      obj.incomeAmount += item.income;
+      obj.payAmount += parseInt(item.amount || 0, 10);
+      obj.incomeAmount += parseInt(item.income || 0, 10);
       obj.count += 1;
     }
   });

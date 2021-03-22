@@ -28,8 +28,9 @@ const Index = (props, ref) => {
     let startDate = '';
     let endDate = '';
     if (t === 'year') {
+      const curM = new Date().getMonth() + 1;
       startDate = new Date(`${year}-01-01`);
-      endDate = new Date(`${year}-12-31`);
+      endDate = new Date(`${year}-${addZero(curM)}-${addZero(new Date(year, curM, 0).getDate())}`);
     } else {
       console.log(`${year}-${addZero(month)}-01`);
       startDate = new Date(`${year}-${addZero(month)}-01`);
@@ -94,11 +95,6 @@ const Index = (props, ref) => {
         </View>
       )}
 
-      {type === 'year' && (
-        <View className='index-month'>
-          {curYear}年
-        </View>
-      )}
 
       <View className='bill-chart-percen'>
         <View

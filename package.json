@@ -2,7 +2,7 @@
   "name": "my-bill",
   "version": "1.0.0",
   "private": true,
-  "description": "的个人账单",
+  "description": "我的个人账单",
   "templateInfo": {
     "name": "default",
     "typescript": false,
