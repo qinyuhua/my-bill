@@ -15,7 +15,7 @@ const Index = (props, ref) => {
     <View className='home-layout' ref={ref}>
       <View className='home-lis'>
         <View className='home-li' onClick={handleGotoBill}>
-          <Image src={iconBill} style={{ width: 100, height: 100 }}  />
+          <Image src={iconBill} style={{ width: 90, height: 100 }}  />
           <Text>消费</Text>
         </View>
       </View>

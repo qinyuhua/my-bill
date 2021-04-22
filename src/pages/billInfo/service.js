@@ -136,3 +136,7 @@ export async function insert(params) {
 export async function update(params) {
   return post('/billList/update', params);
 }
+
+export async function queryAllList(params) {
+  return post('/billList/queryAllList', params);
+}

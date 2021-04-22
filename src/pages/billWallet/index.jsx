@@ -1,8 +1,9 @@
 import React, {forwardRef, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { View, Button, Image, Text } from '@tarojs/components';
-import { numToFixedTwo, numToPercentage, numToFixedTwoAndFormat, addZero } from '@/utils/utils';
+import { numToFixedTwo, numToPercentage, numToFixedTwoAndFormat } from '@/utils/utils';
 import Taro  from '@tarojs/taro';
+import iconAll from '@/assets/image/icon-billtype-ALL.png'
 
 
 import ModalAdd from './ModalAdd';
@@ -14,8 +15,7 @@ const Index = (props, ref) => {
   const [isOpened, setIsOpened] = useState(false);
   const [currentData, setCurrentData] = useState(false);
   const [curYear] = useState(new Date().getFullYear());
-  const [accountBooks, setAccountBooks] = useState([]);
-  const [curShowType, setCurShowType] = useState(false);
+  const [walletLists, setWalletLists] = useState([]);
 
   const handleQueryAll = (year = curYear) => {
     console.log(0, 'handleQueryAll');
@@ -24,15 +24,15 @@ const Index = (props, ref) => {
     const endDate = new Date(`${year}-12-31`);
 
     dispatch({
-      type: 'billType/fetchQueryBillBooks',
+      type: 'billWallet/fetchQueryAllWallets',
       payload: {
         startDate,
         endDate,
-        type: 'pay'
       },
       callback: (res) => {
         console.log(1, res);
-        setAccountBooks(res);
+        const { lists } = res;
+        setWalletLists(lists);
       }
     });
   };
@@ -49,8 +49,9 @@ const Index = (props, ref) => {
 
   const handleAddBill = (params) => {
     console.log(params);
+    // return;
     dispatch({
-      type: 'billType/fetchInsert',
+      type: 'billWallet/fetchInsert',
       payload: {
         ...params
       },
@@ -64,7 +65,7 @@ const Index = (props, ref) => {
   const handleUpdateBill = (params) => {
     console.log(params);
     dispatch({
-      type: 'billType/fetchUpdate',
+      type: 'billWallet/fetchUpdate',
       payload: {
         ...params
       },
@@ -80,8 +81,8 @@ const Index = (props, ref) => {
     e.stopPropagation();
     if (isOpened) return;
     console.log(record);
-    const { billType, budgetAmount } = record;
-    Taro.navigateTo({ url: `/pages/billInfo/index?billType=${billType}&budgetAmount=${budgetAmount}`});
+    // const { billType, budgetAmount } = record;
+    // Taro.navigateTo({ url: `/pages/billInfo/index?billType=${billType}&budgetAmount=${budgetAmount}`});
   };
 
   const handleUpdate = (e, record) => {
@@ -93,43 +94,28 @@ const Index = (props, ref) => {
   };
 
   return (
-    <View className='bill-type-index' ref={ref}>
-      <View onClick={() => setCurShowType(!curShowType)}>
-        展示类型
-      </View>
-      { curShowType && (
-        <View className='bill-type-lists'>
-          {accountBooks && accountBooks.length > 0 && accountBooks.map((item) => {
-            return (
-              <View className='bill-type-lis-body' key={item.id} onClick={(e) => handleGotoInfo(e, item)}>
-                <Image src={`../../assets/image/icon-billtype-${item.billType}.png`} style='width:40px;height:40px;border-radius: 4px;' />
-                <View>{item.bookName}</View>
-              </View>
-            );
-          })}
-        </View>
-      )}
+    <View className='bill-wallet-index' ref={ref}>
 
-      {!curShowType && accountBooks && accountBooks.length > 0 && accountBooks.map((item) => {
+      {walletLists && walletLists.length > 0 && walletLists.map((item) => {
 
         return (
-          <View className='bill-type-lis' key={item.id} onClick={(e) => handleGotoInfo(e, item)}>
+          <View className='bill-wallet-lis' key={item.id} onClick={(e) => handleGotoInfo(e, item)}>
             <View className='left'>
-              <Image src={`../../assets/image/icon-billtype-${item.billType}.png`} style='width:40px;height:40px;border-radius: 4px;' />
+              <Image src={iconAll} style='width:40px;height:40px;border-radius: 4px;' />
             </View>
-            <View className='bill-type-right'>
-              <View className='bill-type-title'>
-                {item.bookName}
-                <Text className='desc'>{numToFixedTwo(numToPercentage(item.payAmount/item.budgetAmount * 100))}%预算已用完</Text>
-                <Text className='bill-type-update-button' onClick={(e) => handleUpdate(e, item)}>设置</Text>
+            <View className='bill-wallet-right'>
+              <View className='bill-wallet-title'>
+                {item.walletName}
+                <Text className='desc'>10%预算已完成</Text>
+                <Text className='bill-wallet-update-button' onClick={(e) => handleUpdate(e, item)}>设置</Text>
               </View>
-              <View className='bill-type-value'>
-                <View className='bill-type-all'>
-                  <View>总支出</View>
-                  <View className='money'>&yen;{numToFixedTwoAndFormat(item.payAmount)}</View>
+              <View className='bill-wallet-value'>
+                <View className='bill-wallet-all'>
+                  <View>余额</View>
+                  <View className='money'>&yen;{numToFixedTwoAndFormat(item.balance)}</View>
                 </View>
-                <View className='bill-type-all'>
-                  <View>总预算</View>
+                <View className='bill-wallet-all'>
+                  <View>总收入</View>
                   <View className='money'>&yen;{numToFixedTwoAndFormat(item.budgetAmount)}</View>
                 </View>
               </View>
@@ -154,6 +140,6 @@ const Index = (props, ref) => {
   )
 };
 
-export default connect(({ billType }) => ({
-  billType,
+export default connect(({ billWallet }) => ({
+  billWallet,
 }))(forwardRef(Index));

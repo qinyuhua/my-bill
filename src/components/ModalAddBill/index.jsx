@@ -1,7 +1,7 @@
-import React, {forwardRef, useEffect, useState} from 'react';
+import React, {forwardRef, useCallback, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { View, Text, Input, Button, Picker } from '@tarojs/components';
-import { AtFloatLayout } from 'taro-ui';
+import { AtFloatLayout, AtCalendar, AtModal } from 'taro-ui';
 import { replaceYear, replaceMonth } from '@/utils/utils';
 import './index.scss';
 
@@ -24,7 +24,7 @@ const Index = (props, ref) => {
   const [date, setDate] = useState(currentData.date ?  replaceYear(new Date(currentData.date), '-') : replaceYear(new Date(), '-'));
 
   const [booksList, setBooksList] = useState([]);
-
+  const [isOpenDate, setIsOpenDate] = useState(false);
 
   console.log(0, currBillType, currentData);
 
@@ -85,11 +85,12 @@ const Index = (props, ref) => {
 
   };
 
-  const onChangeInputAmount = (v) => {
+  const onChangeInputAmount = useCallback((v) => {
     let newValue = v.detail.value;
     setAmount(newValue);
     return newValue;
-  };
+  }, []);
+
   const onChangeInputtitle = (v) => {
     let newValue = v.detail.value;
     setbillTitle(newValue);
@@ -97,8 +98,11 @@ const Index = (props, ref) => {
   };
 
   const onDateChange = (e) => {
-    const v = e.detail.value;
+    console.log(0, e)
+    // const v = e.detail.value;
+    const v = e.value;
     setDate(v);
+    setIsOpenDate(false);
   };
 
 
@@ -115,8 +119,9 @@ const Index = (props, ref) => {
           <Text className='c-bill-modal-button' onClick={handleAdd}>完成</Text>
         </View>
         <View className='c-bill-modal-add-amount'>
-          <Text>￥</Text>
+          <Text>&yen;</Text>
           <Input
+            type='digit'
             placeholder='账单金额'
             value={amount}
             name='amount'
@@ -146,13 +151,17 @@ const Index = (props, ref) => {
             name='billTitle'
             onInput={onChangeInputtitle}
           />
-          <Picker mode='date' onChange={onDateChange}>
-            <View className='c-bill-modal-add-remark-button'>{date}</View>
-          </Picker>
+          {/*<Picker mode='date' onChange={onDateChange}>*/}
+          {/*  <View className='c-bill-modal-add-remark-button'>{date}</View>*/}
+          {/*</Picker>*/}
+          <View className='c-bill-modal-add-remark-button' onClick={() => setIsOpenDate(true)}>{date}</View>
 
         </View>
         {/*<Button className='button-short' onClick={handleAdd}>完成</Button>*/}
       </AtFloatLayout>
+      <AtModal isOpened={isOpenDate}>
+        <AtCalendar currentDate={new Date(date)} onDayClick={onDateChange} />
+      </AtModal>
     </View>
   )
 };

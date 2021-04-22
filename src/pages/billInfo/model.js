@@ -37,6 +37,11 @@ export default {
       const { data } = response;
       if (callback) callback(data);
     },
+    *fetchAllList({ payload, callback }, { call }) {
+      const response = yield call(service.queryAllList, payload);
+      const { data } = response;
+      if (callback) callback(data);
+    },
   },
   reducers: {
     updateState(state, { payload }) {

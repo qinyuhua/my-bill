@@ -46,7 +46,7 @@ const Index = (props, ref) => {
       },
       callback: (data) => {
         console.log(1, data);
-        const allData = data.find(item => item.billType === "ALL");
+        const allData = data.find(item => item.billType === "ALL") || {};
         // const { incomeAmount } = allData;
         setType(t);
         setAllPay(allData);
@@ -81,6 +81,7 @@ const Index = (props, ref) => {
   };
 
   let n = 0;
+  const curMonthBud = (allPay.monthBudgetAmount) * (new Date().getMonth() + 1);
 
   return (
     <View className='bill-chart-index' ref={ref}>
@@ -99,33 +100,54 @@ const Index = (props, ref) => {
       <View className='bill-chart-percen'>
         <View
           className='bill-chart-percen-alread'
-          style={{ width: `${allPay.payAmount / (type === 'year' ? allPay.budgetAmount : allPay.monthBudgetAmount) * 100 }%`, maxWidth: '100%'}}
+          style={{ width: `${allPay.payAmount / (type === 'year' ? curMonthBud : allPay.monthBudgetAmount) * 100 }%`}}
         />
       </View>
       <View className='bill-chart-percenVal'>
         <Text>
-          {allPay.payAmount > (type === 'year' ? allPay.budgetAmount : allPay.monthBudgetAmount) ?
+          {allPay.payAmount > (type === 'year' ? curMonthBud : allPay.monthBudgetAmount) ?
             (<Text className='colorRed'>已超预算</Text>)
-            : `${numToFixedTwo(allPay.payAmount / (type === 'year' ? allPay.budgetAmount : allPay.monthBudgetAmount) * 100)}%预算已用`}</Text>
-        <Text>￥{numToFixedTwoAndFormat(type === 'year' ? allPay.budgetAmount : allPay.monthBudgetAmount)}预算</Text>
+            : `${numToFixedTwo(allPay.payAmount / (type === 'year' ? curMonthBud : allPay.monthBudgetAmount) * 100)}%预算已用`}</Text>
+        <Text>&yen;{numToFixedTwoAndFormat(type === 'year' ? curMonthBud : allPay.monthBudgetAmount)}预算</Text>
         <Text>
-          { allPay.payAmount > (type === 'year' ? allPay.budgetAmount : allPay.monthBudgetAmount) ? '已超￥' : '剩余￥' }
-          {numToFixedTwoAndFormat(Math.abs((type === 'year' ? allPay.budgetAmount : allPay.monthBudgetAmount) - allPay.payAmount))}</Text>
+          { allPay.payAmount > (type === 'year' ? curMonthBud : allPay.monthBudgetAmount) ? '已超' : '剩余' }&yen;
+          {numToFixedTwoAndFormat(Math.abs((type === 'year' ? curMonthBud : allPay.monthBudgetAmount) - allPay.payAmount))}</Text>
       </View>
 
       <View className='index-payinfo'>
         <View className='index-left'>
           <View>{type ==='month' ? `${parseInt(curMonth, 10)}月总支出` : `${parseInt(curYear, 10)}年总支出`}</View>
           <View className='money'>
-            <Text>￥</Text>
+            <Text>&yen;</Text>
             <Text className='amt'>{numToFixedTwoAndFormat(allPay.payAmount)}</Text>
           </View>
         </View>
         <View className='index-left'>
           <View>{type ==='month' ? `${parseInt(curMonth, 10)}月总收入` : `${parseInt(curYear, 10)}年总收入`}</View>
           <View className='money'>
-            <Text>￥</Text>
+            <Text>&yen;</Text>
             <Text className='amt'>{numToFixedTwoAndFormat(allPay.incomeAmount)}</Text>
+          </View>
+        </View>
+      </View>
+
+      <View className='index-incomeinfo'>
+        <View className='index-left'>
+          <View>结余（元）</View>
+          <View className='money'>
+            <Text>&yen;</Text>
+            <Text className='amt'>{numToFixedTwoAndFormat(allPay.incomeAmount - allPay.payAmount)}</Text>
+          </View>
+        </View>
+        <View className='index-left'>
+          <View>
+            {allPay.payAmount > (type === 'year' ? curMonthBud : allPay.monthBudgetAmount) ? '已超预算' : '剩余预算'}
+          </View>
+          <View className='money'>
+            <Text>&yen;</Text>
+            <Text className='amt'>
+              {numToFixedTwoAndFormat(Math.abs((type === 'year' ? curMonthBud : allPay.monthBudgetAmount) - allPay.payAmount))}
+            </Text>
           </View>
         </View>
       </View>
@@ -149,8 +171,13 @@ const Index = (props, ref) => {
                   <View className='count'>{item.count}笔</View>
                 </View>
                 <View className='bill-li-right'>
-                  <Text className={`${item.payAmount > (type === 'month' ? item.monthBudgetAmount : item.budgetAmount) && 'colorRed'}`}>-{numToFixedTwoAndFormat(item.payAmount)}</Text>
+                  <Text
+                    className={`${item.payAmount > (type === 'month' ? item.monthBudgetAmount : item.monthBudgetAmount * (new Date().getMonth() + 1)) && 'colorRed'}`}
+                  >
+                    -{numToFixedTwoAndFormat(item.payAmount)}
+                  </Text>
                   <Image className='rightIcon' src={iconRight} style='width:8px;height:13px;' />
+
                 </View>
               </View>
             </View>

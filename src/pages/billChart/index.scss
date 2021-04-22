@@ -45,7 +45,7 @@
     line-height: 80px;
     padding: 0 30px;
   }
-  .index-payinfo {
+  .index-payinfo, .index-incomeinfo {
     box-sizing: border-box;
     margin: 0 30px 15px 30px;
     background-color: #fff;
@@ -65,9 +65,12 @@
     font-size: 50px;
     font-weight: 600;
   }
+  .index-incomeinfo .amt {
+    font-size: 40px;
+    font-weight: 600;
+  }
   .index-left {
     width: 50%;
-
   }
   .index-books {
     height: 80px;
@@ -100,13 +103,14 @@
       }
       .bill-li-back {
         border-radius: 10px;
-        background: linear-gradient(134deg, #e9f1f6 20%, #e3f9fd 91%);
+        background: linear-gradient(134deg, #e2f2ff 20%, #c7e6ff 91%);
         position: absolute;
         height: 100px;
         top: 0;
         z-index: 0;
         margin-left: 40px;
         min-width: 20%;
+        max-width: 80%;
       }
       .bill-li-body {
         z-index: 10;

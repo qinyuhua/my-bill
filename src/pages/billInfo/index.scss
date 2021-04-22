@@ -3,17 +3,57 @@
   background-color: #f6f6f6;
   font-size: 28px;
   color: #333;
-  //position: relative;
   .index-month {
     height: 80px;
     line-height: 80px;
     padding: 0 30px;
-    color: #fff;
+    //color: #fff;
   }
   .bill-info-header {
     padding:0 30px 50px 30px;
-    background-color: #6080ed;
+    min-height: 200px;
+    //background: linear-gradient(150deg, #c4e5ff 9%, #e5f2fd 92%);
+    background: url(../../assets/image/icon-billtype-ALL.png) no-repeat center;
+    background-size: 100% 100%;
   }
+  .ALL {
+    background: url(../../assets/image/icon-billtype-ALL.png) no-repeat center;
+    background-size: 100% 100%;
+  }
+  .clothes {
+    background: url(../../assets/image/icon-billtype-clothes.png) no-repeat center;
+    background-size: 100% 100%;
+  }
+  .cosmetices {
+    background: url(../../assets/image/icon-billtype-cosmetices.png) no-repeat center;
+    background-size: 100% 100%;
+  }
+  .food {
+    background: url(../../assets/image/icon-billtype-food.png) no-repeat center;
+    background-size: 100% 100%;
+  }
+  .home {
+    background: url(../../assets/image/icon-billtype-home.png) no-repeat center;
+    background-size: 100% 100%;
+  }
+  .medical {
+    background: url(../../assets/image/icon-billtype-medical.png) no-repeat center;
+    background-size: 100% 100%;
+  }
+  .news {
+    background: url(../../assets/image/icon-billtype-news.png) no-repeat center;
+    background-size: 100% 100%;
+  }
+  .oth {
+    background: url(../../assets/image/icon-billtype-oth.png) no-repeat center;
+    background-size: 100% 100%;
+  }
+  .traffic {
+    background: url(../../assets/image/icon-billtype-traffic.png) no-repeat center;
+    background-size: 100% 100%;
+  }
+
+
   .bill-info-body {
     height: 240px;
     //margin: 0 30px 30px 30px;

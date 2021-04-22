@@ -6,10 +6,12 @@ import {AtIcon} from "taro-ui";
 import { replaceYear, numToFixedTwo, numToFixedTwoAndFormat, addZero } from '@/utils/utils';
 import iconDetail from '@/assets/image/icon-detail.png';
 import iconAdd from '@/assets/image/icon-add.png';
+
 import ModalDate from '@/components/ModalDate';
 import ModalAdd from './ModalAdd';
 
 import './index.scss';
+
 
 const Index = (props, ref) => {
   const { dispatch } = props;
@@ -37,12 +39,14 @@ const Index = (props, ref) => {
 
     if (type === 'year') {
       startDate = new Date(`${year}-01-01`);
-      endDate = new Date(`${year}-12-31`);
+      endDate = new Date(); // new Date(`${year}-12-31`);
     } else {
       console.log(`${year}-${addZero(month)}-01`);
       startDate = new Date(`${year}-${addZero(month)}-01`);
       endDate = new Date(`${year}-${addZero(month)}-${addZero(new Date(year, month, 0).getDate())}`);
     }
+
+
     dispatch({
       type: 'billInfo/fetchQueryPayAmount',
       payload: {
@@ -67,9 +71,18 @@ const Index = (props, ref) => {
     })
   };
 
+  const handleQueryAllList = () => {
+    dispatch({
+      type: 'billInfo/fetchAllList',
+      payload: {},
+      callback: () => {}
+    })
+  };
+
 
   useEffect(() => {
     handlequeryPayAmount();
+    // handleQueryAllList();
   }, [billType]);
 
   const handleAddbooks = (record = undefined) => {
@@ -109,7 +122,6 @@ const Index = (props, ref) => {
     handlequeryPayAmount(type);
   };
 
-
   return (
     <View className='bill-info-index' ref={ref}>
 
@@ -117,7 +129,7 @@ const Index = (props, ref) => {
         <Image src={iconAdd} style={{ width: 40, height: 40 }} />
       </View>
 
-      <View className='bill-info-header'>
+      <View className={`bill-info-header ${billType}`}>
         <View className='index-month' onClick={() => setIsOpenedDate(true)}>
           {currentDateType === 'year' ? `${currentYear}年` : `${currentYear}年${currentMonth}月`}
           <AtIcon value='chevron-down' size='18' color='#D0D0D0' />
@@ -129,35 +141,41 @@ const Index = (props, ref) => {
             <Text
               onClick={() => handleClickType('month')}
               className={`bill-info-button ${currentDateType === 'month' && 'active'}`}
-            >月</Text>
+            >
+              月
+            </Text>
             <Text
               onClick={() => handleClickType('year')}
               className={`bill-info-button ${currentDateType === 'year' && 'active'}`}
-            >年</Text>
+            >
+              年
+            </Text>
           </View>
 
           <View className='bill-info-percen'>
             <View
               className='bill-info-percen-alread'
-              style={{ width: `${allAmount / (currentDateType === 'year' ? budgetAmount : monthBudgetAmount) * 100 }%`, maxWidth: '100%'}}
+              style={{ width: `${allAmount / (currentDateType === 'year' ? monthBudgetAmount * (new Date().getMonth() +1) : monthBudgetAmount) * 100 }%`, maxWidth: '100%'}}
             />
           </View>
           <View className='bill-info-percenVal'>
-            <Text>{numToFixedTwo(allAmount / (currentDateType === 'year' ? budgetAmount : monthBudgetAmount) * 100)}%预算已用</Text>
-            <Text>剩余￥{numToFixedTwoAndFormat((currentDateType === 'year' ? budgetAmount : monthBudgetAmount) - allAmount)}</Text>
+            <Text>{numToFixedTwo(allAmount / (currentDateType === 'year' ? monthBudgetAmount * (new Date().getMonth() +1) : monthBudgetAmount) * 100)}%预算已用</Text>
+            <Text>剩余&yen;{numToFixedTwoAndFormat((currentDateType === 'year' ? monthBudgetAmount * (new Date().getMonth() +1) : monthBudgetAmount) - allAmount)}</Text>
           </View>
           <View className='bill-info-all'>
             <View className='amt'>
               <View>{currentDateType === 'year' ? '年度总支出' : '当月总支出'}</View>
               <View
-                className={`num ${allAmount > (currentDateType === 'year' ? budgetAmount : monthBudgetAmount) && 'colorRed'}`}
+                className={`num ${allAmount > (currentDateType === 'year' ? monthBudgetAmount * (new Date().getMonth() +1) : monthBudgetAmount) && 'colorRed'}`}
               >
-                ￥{numToFixedTwoAndFormat(allAmount)}
+                &yen;{numToFixedTwoAndFormat(allAmount)}
               </View>
             </View>
             <View className='amt'>
               <View>{currentDateType === 'year' ? '年度总预算' : '当月总预算'}</View>
-              <View className='num'>￥{numToFixedTwoAndFormat(currentDateType === 'year' ? budgetAmount : monthBudgetAmount)}</View>
+              <View className='num'>
+                &yen;{numToFixedTwoAndFormat(currentDateType === 'year' ? budgetAmount : monthBudgetAmount)}
+              </View>
             </View>
 
           </View>

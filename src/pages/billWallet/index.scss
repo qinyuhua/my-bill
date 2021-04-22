@@ -1,15 +1,15 @@
-.bill-type-index {
+.bill-wallet-index {
   min-height: 100vh;
   background-color: #f6f6f6;
   font-size: 28px;
   color: #333;
   padding-top: 20px;
-  .bill-type-lists {
+  .bill-wallet-lists {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 
-    .bill-type-lis-body {
+    .bill-wallet-lis-body {
       display: inline-block;
       box-sizing: border-box;
       width: 22%;
@@ -22,7 +22,7 @@
     }
   }
 
-  .bill-type-lis {
+  .bill-wallet-lis {
     margin: 20px;
     display: flex;
     justify-content: flex-start;
@@ -31,12 +31,12 @@
     height: 200px;
     align-items: center;
     padding: 0 10px;
-    .bill-type-right {
+    .bill-wallet-right {
       padding-left: 30px;
       height: 100%;
       width: 100%;
     }
-    .bill-type-title {
+    .bill-wallet-title {
       font-size: 34px;
       padding: 20px 0;
       .desc {
@@ -45,7 +45,7 @@
         padding-left: 40px;
       }
     }
-    .bill-type-update-button {
+    .bill-wallet-update-button {
       padding: 5px 10px;
       background-color: #f0f0f0;
       border-radius: 4px;
@@ -55,17 +55,17 @@
       color: #464646;
       font-size: 24px;
     }
-    .bill-type-value {
+    .bill-wallet-value {
       display: flex;
       justify-content: space-between;
       color: #999;
     }
-    .bill-type-all {
+    .bill-wallet-all {
       width: 50%;
       line-height: 40px;
       //border-right: 1px solid #aaa;
     }
-    .bill-type-all .money {
+    .bill-wallet-all .money {
       color: #000;
     }
   }

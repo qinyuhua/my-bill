@@ -1,68 +1,344 @@
 {
-  "data": [
+  "data":[
     {
-      "_id":"605038aa16b2fe2dc04eea58",
-      "billTitle":"3月-工资",
-      "time":"2021-03-16T04:48:42.366Z",
-      "billType":"ALL",
-      "type":"income",
-      "amount":0,
-      "date":"2021-03-05T00:00:00.000Z",
+      "_id":"604ef08e094ada4fac674d3e",
+      "billTitle":"12月-房租",
+      "time":"2021-03-15T05:28:46.227Z",
+      "billType":"home",
+      "type":"pay",
+      "amount":230000,
+      "date":"2021-12-10T00:00:00.000Z",
+      "month":"202112",
+      "income":0
+    },
+    {
+      "_id":"604ef07c094ada4fac674d3d",
+      "billTitle":"11月-房租",
+      "time":"2021-03-15T05:28:28.167Z",
+      "billType":"home",
+      "type":"pay",
+      "amount":230000,
+      "date":"2021-11-10T00:00:00.000Z",
+      "month":"202111",
+      "income":0
+    },
+    {
+      "_id":"604ef068094ada4fac674d3c",
+      "billTitle":"10月房租",
+      "time":"2021-03-15T05:28:08.078Z",
+      "billType":"home",
+      "type":"pay",
+      "amount":230000,
+      "date":"2021-10-10T00:00:00.000Z",
+      "month":"202110",
+      "income":0
+    },
+    {
+      "_id":"604ef053094ada4fac674d3b",
+      "billTitle":"9月-房租",
+      "time":"2021-03-15T05:27:47.792Z",
+      "billType":"home",
+      "type":"pay",
+      "amount":230000,
+      "date":"2021-09-15T00:00:00.000Z",
+      "month":"202109",
+      "income":0
+    },
+    {
+      "_id":"604ef046094ada4fac674d3a",
+      "billTitle":"8月-房租",
+      "time":"2021-03-15T05:27:34.024Z",
+      "billType":"home",
+      "type":"pay",
+      "amount":230000,
+      "date":"2021-08-10T00:00:00.000Z",
+      "month":"202108",
+      "income":0
+    },
+    {
+      "_id":"604ef034094ada4fac674d39",
+      "billTitle":"7月-房租",
+      "time":"2021-03-15T05:27:16.402Z",
+      "billType":"home",
+      "type":"pay",
+      "amount":230000,
+      "date":"2021-07-10T00:00:00.000Z",
+      "month":"202107",
+      "income":0
+    },
+    {
+      "_id":"604ef017094ada4fac674d38",
+      "billTitle":"6月-房租",
+      "time":"2021-03-15T05:26:47.056Z",
+      "billType":"home",
+      "type":"pay",
+      "amount":230000,
+      "date":"2021-06-10T00:00:00.000Z",
+      "month":"202106",
+      "income":0
+    },
+    {
+      "_id":"604ef002094ada4fac674d37",
+      "billTitle":"5月-房租",
+      "time":"2021-03-15T05:26:26.685Z",
+      "billType":"home",
+      "type":"pay",
+      "amount":230000,
+      "date":"2021-05-10T00:00:00.000Z",
+      "month":"202105",
+      "income":0
+    },
+    {
+      "_id":"604eefed094ada4fac674d36",
+      "billTitle":"4月-房租",
+      "time":"2021-03-15T05:26:05.962Z",
+      "billType":"home",
+      "type":"pay",
+      "amount":230000,
+      "date":"2021-04-10T00:00:00.000Z",
+      "month":"202104",
+      "income":0
+    },
+    {
+      "_id":"6065243539e7183438bade0b",
+      "billTitle":"1046公交",
+      "time":"2021-04-01T01:39:01.588Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-04-01T00:00:00.000Z",
+      "month":"202104",
+      "amount":100,
+      "income":0
+    },
+    {
+      "_id":"606435253182491728aea6a3",
+      "billTitle":"1046-公交",
+      "time":"2021-03-31T08:39:01.936Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-31T00:00:00.000Z",
       "month":"202103",
-      "income":1438387
+      "amount":88,
+      "income":0
     },
     {
-      "_id":"60581fa34e5cf546909be509",
-      "billTitle":"京东-天泽3*33",
-      "time":"2021-03-22T04:47:15.699Z",
+      "_id":"6064353d3182491728aea6a4",
+      "billTitle":"年终奖",
+      "time":"2021-03-31T08:39:38.356Z",
       "billType":"ALL",
       "type":"income",
-      "date":"2021-03-03T00:00:00.000Z",
+      "date":"2021-03-31T00:00:00.000Z",
       "month":"202103",
-      "income":125370
+      "income":2633065
     },
     {
-      "_id":"60581ebb4e5cf546909be508",
-      "billTitle":"理财-平安富享人生366天",
-      "time":"2021-03-22T04:38:17.092Z",
-      "billType":"ALL",
-      "type":"income",
-      "amount":0,
-      "date":"2021-02-26T00:00:00.000Z",
-      "month":"202102",
-      "income":68608
+      "_id":"606295820656a728986cabd2",
+      "billTitle":"1046-公交",
+      "time":"2021-03-30T03:05:38.059Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-30T00:00:00.000Z",
+      "month":"202103",
+      "amount":100,
+      "income":0
     },
     {
-      "_id":"60582180fa19eb0538c4721a",
-      "billTitle":"京东-中山稳健5月期22",
-      "time":"2021-03-22T04:49:09.420Z",
-      "billType":"ALL",
-      "type":"income",
-      "date":"2021-02-25T00:00:00.000Z",
-      "month":"202102",
-      "income":87055
+      "_id":"60629ebb0656a728986cabd3",
+      "billTitle":"午饭-食堂",
+      "time":"2021-03-30T03:44:59.806Z",
+      "billType":"food",
+      "type":"pay",
+      "date":"2021-03-30T00:00:00.000Z",
+      "month":"202103",
+      "amount":5000,
+      "income":0
     },
     {
-      "_id":"605191fd65213e1ec8d8299a",
-      "billTitle":"2月工资",
-      "time":"2021-03-17T05:22:05.280Z",
-      "billType":"ALL",
-      "type":"income",
-      "amount":0,
-      "date":"2021-02-05T00:00:00.000Z",
-      "month":"202102",
-      "income":1438387
+      "_id":"6061458bacd60c0840149487",
+      "billTitle":"1046-公交",
+      "time":"2021-03-29T03:12:11.256Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-29T00:00:00.000Z",
+      "month":"202103",
+      "amount":100,
+      "income":0
     },
     {
-      "_id":"60518a0e65213e1ec8d82957",
-      "billTitle":"1月工资",
-      "time":"2021-03-17T04:48:14.240Z",
-      "billType":"ALL",
-      "type":"income",
-      "amount":0,
-      "date":"2021-01-05T00:00:00.000Z",
-      "month":"202101",
-      "income":2408387
+      "_id":"6061459bacd60c0840149488",
+      "billTitle":"上海地铁",
+      "time":"2021-03-29T03:12:27.381Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-28T00:00:00.000Z",
+      "month":"202103",
+      "amount":400,
+      "income":0
+    },
+    {
+      "_id":"606145a9acd60c0840149489",
+      "billTitle":"香蕉",
+      "time":"2021-03-29T03:12:41.755Z",
+      "billType":"food",
+      "type":"pay",
+      "date":"2021-03-28T00:00:00.000Z",
+      "month":"202103",
+      "amount":720,
+      "income":0
+    },
+    {
+      "_id":"606145bcacd60c084014948a",
+      "billTitle":"拉面",
+      "time":"2021-03-29T03:13:00.816Z",
+      "billType":"food",
+      "type":"pay",
+      "date":"2021-03-28T00:00:00.000Z",
+      "month":"202103",
+      "amount":1590,
+      "income":0
+    },
+    {
+      "_id":"606145caacd60c084014948b",
+      "billTitle":"上海地铁",
+      "time":"2021-03-29T03:13:14.224Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-28T00:00:00.000Z",
+      "month":"202103",
+      "amount":400,
+      "income":0
+    },
+    {
+      "_id":"606145d7acd60c084014948c",
+      "billTitle":"上海地铁",
+      "time":"2021-03-29T03:13:27.607Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-27T00:00:00.000Z",
+      "month":"202103",
+      "amount":400,
+      "income":0
+    },
+    {
+      "_id":"606145e1acd60c084014948d",
+      "billTitle":"上海地铁",
+      "time":"2021-03-29T03:13:37.696Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-27T00:00:00.000Z",
+      "month":"202103",
+      "amount":400,
+      "income":0
+    },
+    {
+      "_id":"606145f2acd60c084014948e",
+      "billTitle":"盒马蔬菜",
+      "time":"2021-03-29T03:13:54.985Z",
+      "billType":"food",
+      "type":"pay",
+      "date":"2021-03-27T00:00:00.000Z",
+      "month":"202103",
+      "amount":5050,
+      "income":0
+    },
+    {
+      "_id":"605d4d86cdc7ab241cbc41f9",
+      "billTitle":"1046-公交",
+      "time":"2021-03-26T02:57:10.766Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-26T00:00:00.000Z",
+      "month":"202103",
+      "amount":100,
+      "income":0
+    },
+    {
+      "_id":"605d76eccdc7ab241cbc41fa",
+      "billTitle":"微信-手机充值",
+      "time":"2021-03-26T05:53:48.549Z",
+      "billType":"news",
+      "type":"pay",
+      "date":"2021-03-26T00:00:00.000Z",
+      "month":"202103",
+      "amount":4995,
+      "income":0
+    },
+    {
+      "_id":"606146d4acd60c084014948f",
+      "billTitle":"饮用水",
+      "time":"2021-03-29T03:17:40.902Z",
+      "billType":"food",
+      "type":"pay",
+      "date":"2021-03-26T00:00:00.000Z",
+      "month":"202103",
+      "amount":950,
+      "income":0
+    },
+    {
+      "_id":"605bf2b10bad532fa8ae1a3b",
+      "billTitle":"1046-公交",
+      "time":"2021-03-26T01:47:43.548Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-25T00:00:00.000Z",
+      "month":"202103",
+      "amount":88,
+      "income":0
+    },
+    {
+      "_id":"605a9766a2f0c54a109b7b02",
+      "billTitle":"早餐-煎饼果子夹油条",
+      "time":"2021-03-24T01:43:34.918Z",
+      "billType":"food",
+      "type":"pay",
+      "date":"2021-03-24T00:00:00.000Z",
+      "month":"202103",
+      "amount":600,
+      "income":0
+    },
+    {
+      "_id":"605a9772a2f0c54a109b7b03",
+      "billTitle":"1046-公交",
+      "time":"2021-03-24T01:35:46.218Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-24T00:00:00.000Z",
+      "month":"202103",
+      "amount":100,
+      "income":0
+    },
+    {
+      "_id":"60594d3f19958531203db7de",
+      "billTitle":"京东-信用卡-苹果",
+      "time":"2021-03-23T02:06:55.340Z",
+      "billType":"food",
+      "type":"pay",
+      "date":"2021-03-23T00:00:00.000Z",
+      "month":"202103",
+      "amount":2680,
+      "income":0
+    },
+    {
+      "_id":"605a96f5a2f0c54a109b7b00",
+      "billTitle":"1046-公交",
+      "time":"2021-03-24T01:33:41.481Z",
+      "billType":"traffic",
+      "type":"pay",
+      "date":"2021-03-23T00:00:00.000Z",
+      "month":"202103",
+      "amount":100,
+      "income":0
+    },
+    {
+      "_id":"605a9728a2f0c54a109b7b01",
+      "billTitle":"淋浴头-京东-信用卡-手贱摔坏了",
+      "time":"2021-03-24T01:43:48.651Z",
+      "billType":"home",
+      "type":"pay",
+      "date":"2021-03-23T00:00:00.000Z",
+      "month":"202103",
+      "amount":2390,
+      "income":0
     },
     {
       "_id":"605846d5e6fe590660e6e919",
@@ -77,8 +353,8 @@
     },
     {
       "_id":"60584764e6fe590660e6e91b",
-      "billTitle":"电费",
-      "time":"2021-03-22T07:29:40.942Z",
+      "billTitle":"3月-电费",
+      "time":"2021-03-23T07:05:32.017Z",
       "billType":"home",
       "type":"pay",
       "date":"2021-03-22T00:00:00.000Z",
@@ -88,8 +364,8 @@
     },
     {
       "_id":"60584776e6fe590660e6e91c",
-      "billTitle":"水费",
-      "time":"2021-03-22T07:29:58.924Z",
+      "billTitle":"3月-水费",
+      "time":"2021-03-23T07:04:48.150Z",
       "billType":"home",
       "type":"pay",
       "date":"2021-03-22T00:00:00.000Z",
@@ -99,8 +375,8 @@
     },
     {
       "_id":"60584794e6fe590660e6e91d",
-      "billTitle":"燃气",
-      "time":"2021-03-22T07:30:28.061Z",
+      "billTitle":"3月-燃气",
+      "time":"2021-03-23T07:05:56.439Z",
       "billType":"home",
       "type":"pay",
       "date":"2021-03-22T00:00:00.000Z",
@@ -110,8 +386,8 @@
     },
     {
       "_id":"6057f5397d05c148dcc8872e",
-      "billTitle":"地铁",
-      "time":"2021-03-22T01:39:05.210Z",
+      "billTitle":"地铁-去吃周师兄",
+      "time":"2021-03-24T01:44:05.073Z",
       "billType":"traffic",
       "type":"pay",
       "amount":300,
@@ -143,8 +419,8 @@
     },
     {
       "_id":"6057f5187d05c148dcc8872c",
-      "billTitle":"鱼头",
-      "time":"2021-03-22T01:38:32.525Z",
+      "billTitle":"剁椒鱼头-",
+      "time":"2021-03-24T01:44:16.374Z",
       "billType":"food",
       "type":"pay",
       "amount":33800,
@@ -187,8 +463,8 @@
     },
     {
       "_id":"6051942d65213e1ec8d829ad",
-      "billTitle":"公交",
-      "time":"2021-03-17T05:32:02.382Z",
+      "billTitle":"1046路-公交",
+      "time":"2021-03-26T02:47:20.854Z",
       "billType":"traffic",
       "type":"pay",
       "amount":100,
@@ -230,6 +506,17 @@
       "income":0
     },
     {
+      "_id":"605d421ecdc7ab241cbc41f8",
+      "billTitle":"雅诗兰黛精华开瓶",
+      "time":"2021-03-26T02:08:30.725Z",
+      "billType":"cosmetices",
+      "type":"pay",
+      "amount":0,
+      "date":"2021-03-15T00:00:00.000Z",
+      "month":"202103",
+      "income":0
+    },
+    {
       "_id":"604ebdfeb6ac4f41eca42d98",
       "billTitle":"新万鑫银丝面",
       "time":"2021-03-15T01:53:02.084Z",
@@ -265,10 +552,10 @@
     {
       "_id":"60503b2d16b2fe2dc04eea70",
       "billTitle":"无锡 打车",
-      "time":"2021-03-16T04:59:25.888Z",
+      "time":"2021-03-26T06:06:50.696Z",
       "billType":"traffic",
       "type":"pay",
-      "amount":1100,
+      "amount":1181,
       "date":"2021-03-14T00:00:00.000Z",
       "month":"202103",
       "income":0
@@ -517,8 +804,8 @@
     },
     {
       "_id":"605038f916b2fe2dc04eea5b",
-      "billTitle":"面膜+面霜",
-      "time":"2021-03-16T04:50:01.665Z",
+      "billTitle":"面膜+面霜（面霜没啥效果）",
+      "time":"2021-03-23T02:07:34.645Z",
       "billType":"cosmetices",
       "type":"pay",
       "amount":23600,
@@ -580,6 +867,17 @@
       "date":"2021-03-05T00:00:00.000Z",
       "month":"202103",
       "income":0
+    },
+    {
+      "_id":"605038aa16b2fe2dc04eea58",
+      "billTitle":"3月-工资",
+      "time":"2021-03-16T04:48:42.366Z",
+      "billType":"ALL",
+      "type":"income",
+      "amount":0,
+      "date":"2021-03-05T00:00:00.000Z",
+      "month":"202103",
+      "income":1438387
     },
     {
       "_id":"605038c416b2fe2dc04eea59",
@@ -648,6 +946,16 @@
       "income":0
     },
     {
+      "_id":"60581fa34e5cf546909be509",
+      "billTitle":"京东-天泽3*33",
+      "time":"2021-03-22T04:47:15.699Z",
+      "billType":"ALL",
+      "type":"income",
+      "date":"2021-03-03T00:00:00.000Z",
+      "month":"202103",
+      "income":125370
+    },
+    {
       "_id":"6050355816b2fe2dc04eea52",
       "billTitle":"1046-公交车",
       "time":"2021-03-16T04:40:44.042Z",
@@ -679,6 +987,27 @@
       "date":"2021-03-01T00:00:00.000Z",
       "month":"202103",
       "income":0
+    },
+    {
+      "_id":"60581ebb4e5cf546909be508",
+      "billTitle":"理财-平安富享人生366天",
+      "time":"2021-03-22T04:38:17.092Z",
+      "billType":"ALL",
+      "type":"income",
+      "amount":0,
+      "date":"2021-02-26T00:00:00.000Z",
+      "month":"202102",
+      "income":68608
+    },
+    {
+      "_id":"60582180fa19eb0538c4721a",
+      "billTitle":"京东-中山稳健5月期22",
+      "time":"2021-03-22T04:49:09.420Z",
+      "billType":"ALL",
+      "type":"income",
+      "date":"2021-02-25T00:00:00.000Z",
+      "month":"202102",
+      "income":87055
     },
     {
       "_id":"604f201d3070080ed4a9016a",
@@ -1031,6 +1360,17 @@
       "date":"2021-02-05T00:00:00.000Z",
       "month":"202102",
       "income":0
+    },
+    {
+      "_id":"605191fd65213e1ec8d8299a",
+      "billTitle":"2月工资",
+      "time":"2021-03-17T05:22:05.280Z",
+      "billType":"ALL",
+      "type":"income",
+      "amount":0,
+      "date":"2021-02-05T00:00:00.000Z",
+      "month":"202102",
+      "income":1438387
     },
     {
       "_id":"60519112e2b47447a44a8740",
@@ -1823,6 +2163,17 @@
       "date":"2021-01-05T00:00:00.000Z",
       "month":"202101",
       "income":0
+    },
+    {
+      "_id":"60518a0e65213e1ec8d82957",
+      "billTitle":"1月工资",
+      "time":"2021-03-17T04:48:14.240Z",
+      "billType":"ALL",
+      "type":"income",
+      "amount":0,
+      "date":"2021-01-05T00:00:00.000Z",
+      "month":"202101",
+      "income":2408387
     },
     {
       "_id":"605189de65213e1ec8d82955",

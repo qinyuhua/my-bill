@@ -70,7 +70,7 @@ const Index = (props, ref) => {
           <Text className={`bill-add-type ${currentType === 'income' && 'current'}`} onClick={() => setCurrentType('income')}>收入</Text>
         </View>
         <View className='bill-add-amount'>
-          <Text>￥</Text>
+          <Text>&yen;</Text>
           <Input
             placeholder='账单金额'
             value={amount}

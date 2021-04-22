@@ -11,8 +11,6 @@ export async function findAllBooks(params) {
   if (!isWeiXin()) {
     return post('/billbook/findAllBooks', params);
   }
-
-
   return billBooks;
 
 }
@@ -44,7 +42,7 @@ export async function queryBillBooks(params) {
         ...booksObj,
         payAmount: item.amount,
         incomeAmount: item.income,
-        count: 1
+        count: 1,
       });
     } else {
       obj.payAmount += parseInt(item.amount || 0, 10);
@@ -53,10 +51,19 @@ export async function queryBillBooks(params) {
     }
   });
 
-  const allObj = arr.find(item => item.billType === 'ALL');
+  const allObj = arr.find(item => item.billType === 'ALL') || {};
   allObj.payAmount = allPayAmount;
   allObj.incomeAmount = allIncomeAmount;
+  if (!arr.find(item => item.billType === 'ALL')) {
+    arr.push({
+      ...allObj,
+      billType: 'ALL',
+      monthBudgetAmount: 650000,
+    });
+  }
 
+
+  console.log(0, arr, allObj);
 
   arr.sort(object);
 

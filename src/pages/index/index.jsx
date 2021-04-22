@@ -9,6 +9,18 @@ import iconAdd from '@/assets/image/icon-add.png';
 import iconbillType from '@/assets/image/icon-bill-type.png';
 import ModalAdd from '@/components/ModalAddBill';
 import ModalDate from '@/components/ModalDate';
+
+import iconBilltype_home from '@/assets/image/icon-billtype-home.png';
+import iconBilltype_clothes from '@/assets/image/icon-billtype-clothes.png';
+import iconBilltype_cosmetices from '@/assets/image/icon-billtype-cosmetices.png';
+import iconBilltype_food from '@/assets/image/icon-billtype-food.png';
+import iconBilltype_medical from '@/assets/image/icon-billtype-medical.png';
+import iconBilltype_news from '@/assets/image/icon-billtype-news.png';
+import iconBilltype_oth from '@/assets/image/icon-billtype-oth.png';
+import iconBilltype_traffic from '@/assets/image/icon-billtype-traffic.png';
+import iconBilltype_ALL from '@/assets/image/icon-billtype-ALL.png';
+
+
 import './index.scss';
 
 const weekArr = ['日', '一', '二', '三', '四', '五', '六' ];
@@ -101,8 +113,6 @@ const Index = (props, ref) => {
 
   return (
     <View className='index' ref={ref}>
-
-
       <View className='index-fab' onClick={() => handleClickUpdate()}>
         <Image src={iconAdd} style={{ width: 40, height: 40 }} />
       </View>
@@ -132,21 +142,25 @@ const Index = (props, ref) => {
           <View className='index-left'>
             <View>{parseInt(currentMonth, 10)}月总支出</View>
             <View className='money'>
-              <Text>￥</Text>
+              <Text>&yen;</Text>
               <Text className='amt'>{numToFixedTwoAndFormat(total.totalPayAmount)}</Text>
             </View>
           </View>
           <View onClick={handleGotoIncome}>
             <View>{parseInt(currentMonth, 10)}月总收入</View>
             <View className='money'>
-              <Text>￥</Text>
+              <Text>&yen;</Text>
               <Text className='amt'>{numToFixedTwoAndFormat(total.totalIncomeAmount)}</Text>
             </View>
           </View>
         </View>
         <View className='index-books' onClick={handelGotoAll}>
-          全部账单
-          <Image src={iconRight} style='width:8px;height:15px;' />
+          <View>全部账单</View>
+          <View>
+            <Text>剩余{numToFixedTwoAndFormat(total.totalIncomeAmount - total.totalPayAmount)}元</Text>
+            <Image src={iconRight} style='width:8px;height:15px;margin-left:10px;' />
+          </View>
+
         </View>
       </View>
 

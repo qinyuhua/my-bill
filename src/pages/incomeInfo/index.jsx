@@ -1,8 +1,9 @@
 import React, {forwardRef, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { Text, View} from '@tarojs/components';
-
+import {Image, Text, View} from '@tarojs/components';
+import Taro from '@tarojs/taro';
 import { replaceYear, numToFixedTwoAndFormat, numToFixedTwo } from '@/utils/utils';
+import iconbillIncome from '@/assets/image/icon-bill-income.png';
 
 import './index.scss';
 
@@ -52,9 +53,17 @@ const Index = (props, ref) => {
     handleQueryAll();
   }, []);
 
+  const handleGotoWallet = () => {
+    Taro.navigateTo({ url: '/pages/billWallet/index'});
+  }
+
 
   return (
     <View className='income-info-index' ref={ref}>
+      <View className='income-info-type' onClick={handleGotoWallet}>
+        <Image src={iconbillIncome} style={{ width: 40, height: 40 }} />
+      </View>
+
       <View className='income-info-percen'>
         <View
           className='income-info-percen-alread'
@@ -63,23 +72,23 @@ const Index = (props, ref) => {
       </View>
       <View className='income-info-percenVal'>
         <Text>{numToFixedTwo((allIncomeAmount - allPayAmount) / 10000000 * 100)}%预计收入已完成</Text>
-        <Text>剩余￥{numToFixedTwoAndFormat(10000000 - (allIncomeAmount - allPayAmount))}</Text>
+        <Text>剩余&yen;{numToFixedTwoAndFormat(10000000 - (allIncomeAmount - allPayAmount))}</Text>
       </View>
 
       <View className='income-info-payinfo'>
         <View className={`income-info-left ${curType === 'income' && 'active'}`} onClick={() => setCurType('income')}>
           <View>累计收入</View>
           <View className='money'>
-            <Text>￥</Text>
+            <Text>&yen;</Text>
             <Text className='amt'>{numToFixedTwoAndFormat(allIncomeAmount - allPayAmount)}</Text>
           </View>
         </View>
 
         <View className={`income-info-left ${curType === 'pay' && 'active'}`} onClick={() => setCurType('pay')}>
-          <View>累计支出</View>
+          <View>总收入</View>
           <View className='money'>
-            <Text>￥</Text>
-            <Text className='amt'>{numToFixedTwoAndFormat(allPayAmount)}</Text>
+            <Text>&yen;</Text>
+            <Text className='amt'>{numToFixedTwoAndFormat(allIncomeAmount)}</Text>
           </View>
         </View>
       </View>
