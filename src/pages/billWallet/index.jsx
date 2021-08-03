@@ -30,7 +30,6 @@ const Index = (props, ref) => {
         endDate,
       },
       callback: (res) => {
-        console.log(1, res);
         const { lists } = res;
         setWalletLists(lists);
       }

@@ -37,7 +37,6 @@ const Index = (props, ref) => {
       month: replaceMonth(date, ''),
     };
 
-    console.log(1, params);
     handleAddBill(params);
   };
 

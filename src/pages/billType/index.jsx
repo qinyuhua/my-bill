@@ -31,7 +31,6 @@ const Index = (props, ref) => {
         type: 'pay'
       },
       callback: (res) => {
-        console.log(1, res);
         setAccountBooks(res);
       }
     });

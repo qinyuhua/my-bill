@@ -6,6 +6,7 @@ import {View, Text, Image} from '@tarojs/components';
 import { replaceYear, numToFixedTwoAndFormat, addZero } from '@/utils/utils';
 import iconRight from '@/assets/image/icon-right.png';
 import iconAdd from '@/assets/image/icon-add.png';
+import iconDel from '@/assets/image/icon-detail.png';
 import iconbillType from '@/assets/image/icon-bill-type.png';
 import ModalAdd from '@/components/ModalAddBill';
 import ModalDate from '@/components/ModalDate';
@@ -73,6 +74,25 @@ const Index = (props, ref) => {
     });
   };
 
+  const handleQueryAllbooks = () => {
+    dispatch({
+      type: 'billType/fetchQueryAllBooks',
+      payload: {},
+    });
+  };
+
+  const handleQueryAll = () => {
+    dispatch({
+      type: 'billInfo/fetchAllList',
+      payload: {},
+    });
+  }
+
+  useEffect(() => {
+    handleQueryAllbooks();
+    handleQueryAll();
+  }, []);
+
   useEffect(() => {
     handleQueryPayAmount();
     handleQueryList();
@@ -111,8 +131,17 @@ const Index = (props, ref) => {
     Taro.navigateTo({ url: '/pages/incomeInfo/index'});
   };
 
+  const handleClearStrotage = () => {
+    Taro.clearStorage();
+    handleQueryAllbooks();
+    handleQueryAll();
+  }
+
   return (
     <View className='index' ref={ref}>
+      <View className='index-fab-del' onClick={() => handleClearStrotage()}>
+        <Image src={iconDel} style={{ width: 40, height: 40 }} />
+      </View>
       <View className='index-fab' onClick={() => handleClickUpdate()}>
         <Image src={iconAdd} style={{ width: 40, height: 40 }} />
       </View>
@@ -180,7 +209,8 @@ const Index = (props, ref) => {
                   </View>
                   <View className={`right ${lItem.type === 'income' && 'income'}`}>
                     {lItem.type === 'pay' ? '-' : '+'}
-                    {numToFixedTwoAndFormat(lItem.type === 'pay' ? lItem.amount : lItem.income)}
+                    {/*{numToFixedTwoAndFormat(lItem.type === 'pay' ? lItem.amount : lItem.income)}*/}
+                    {numToFixedTwoAndFormat(lItem.amount)}
                   </View>
                 </View>
               </View>

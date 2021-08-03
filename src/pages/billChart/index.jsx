@@ -1,9 +1,10 @@
-import React, {forwardRef, useEffect, useState} from 'react';
+import React, {forwardRef, useCallback, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import Taro from '@tarojs/taro';
 import {Image, Text, View} from '@tarojs/components';
 import { AtIcon } from 'taro-ui';
 import ModalDate from '@/components/ModalDate';
+import BillChartLine from '@/components/BillChartLine';
 import { numToFixedTwo, numToFixedTwoAndFormat, addZero } from '@/utils/utils';
 import iconRight from '@/assets/image/icon-right.png';
 
@@ -20,10 +21,11 @@ const Index = (props, ref) => {
   const [allPay, setAllPay] = useState({});
   // const [allIncome, setAllIncome] = useState(0);
   const [accountBooks, setAccountBooks] = useState([]);
+  const [monthPay, setMonthPay] = useState([]);
 
 
-  const handleQueryAll = (t = type, year = curYear, month = curMonth) => {
-    console.log(0, 'handleQueryAll');
+  const handleQueryAll = useCallback((t = type, year = curYear, month = curMonth) => {
+    console.log(0, 'handleQueryAll', t);
 
     let startDate = '';
     let endDate = '';
@@ -45,7 +47,9 @@ const Index = (props, ref) => {
         // type: 'pay'
       },
       callback: (data) => {
-        console.log(1, data);
+
+        console.log(4, data);
+
         const allData = data.find(item => item.billType === "ALL") || {};
         // const { incomeAmount } = allData;
         setType(t);
@@ -60,11 +64,26 @@ const Index = (props, ref) => {
 
       }
     });
+  }, [type]);
+
+  const handelQueryByMonths = () => {
+    console.log(3, 'handelQueryByMonths', type);
+    if (type === 'year') {
+      dispatch({
+        type: 'billType/fetchBillByMonths',
+        payload: {},
+        callback: (resData) => {
+          console.log(6, resData);
+          setMonthPay(resData);
+        }
+      })
+    }
   };
 
   useEffect(() => {
     handleQueryAll();
-  }, []);
+    handelQueryByMonths();
+  }, [type]);
 
 
 
@@ -86,8 +105,8 @@ const Index = (props, ref) => {
   return (
     <View className='bill-chart-index' ref={ref}>
       <View className='bill-chart-type'>
-        <View className={`bill-chart-month ${type === 'month' && 'active'}`} onClick={() => handleQueryAll('month')}>月报</View>
-        <View className={`bill-chart-month ${type === 'year' && 'active'}`} onClick={() => handleQueryAll('year')}>年报</View>
+        <View className={`bill-chart-month ${type === 'month' && 'active'}`} onClick={() => setType('month')}>月报</View>
+        <View className={`bill-chart-month ${type === 'year' && 'active'}`} onClick={() => setType('year')}>年报</View>
       </View>
       {type === 'month' && (
         <View className='index-month' onClick={() => setIsOpened(true)}>
@@ -184,6 +203,36 @@ const Index = (props, ref) => {
           );
         })}
       </View>
+      <BillChartLine />
+
+      {/*<View className='bill-chart-lis'>
+        {monthPay && monthPay.map((item, index) => {
+          return (
+            <View className='bill-chart-li'>
+              <View className='number'>{index + 1}</View>
+              <View
+                className='bill-li-back'
+                style={`width:${(item.allPayAmount / 650000 * 100) < 70 ? (item.allPayAmount / 650000 * 100) + 30 : (item.allPayAmount / 650000 * 100)}%`}
+              />
+              <View className='bill-li-body'>
+                <View className='bill-li-left' >
+                  <View>{item._id.month}</View>
+                  <View className='count'>{item.count}笔</View>
+                </View>
+                <View className='bill-li-right'>
+                  <Text
+                    className={`${item.allPayAmount > 650000 && 'colorRed'}`}
+                  >
+                    -{numToFixedTwoAndFormat(item.allPayAmount)}
+                  </Text>
+                  <Image className='rightIcon' src={iconRight} style='width:8px;height:13px;' />
+
+                </View>
+              </View>
+            </View>
+          );
+        })}
+      </View>*/}
 
       { isOpened && (
         <ModalDate

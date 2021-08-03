@@ -8,7 +8,7 @@ import { ISALIPAYDD, ISH5PLAT } from './platCommon';
 let accountInfo = '';
 let envVersion = 'develop';
 // eslint-disable-next-line
-console.log('request.js', process.env.TARO_ENV, window.navigator.userAgent.toLowerCase());
+// console.log('request.js', process.env.TARO_ENV, window.navigator.userAgent.toLowerCase());
 
 // production
 if (['alipay', 'alipay-dd', 'dd'].indexOf(process.env.TARO_ENV) > -1) {
@@ -23,11 +23,11 @@ const baseApi = {
   // 小程序开发版，调后端测试环境
   // develop: 'http://10.254.24.80:80',
   // develop: 'https://xyd.mandao.com',
-  develop: 'http://10.0.70.65:3131',
+  develop: 'http://10.9.1.21:3131',
   // 小程序体验版，调后端测试环境
-  trial: 'http://10.0.70.65:3131',
+  trial: 'http://10.9.1.21:3131',
   // 小程序正式版，调后端生产环境
-  release: 'http://10.0.70.65:3131',
+  release: 'http://10.9.1.21:3131',
 };
 const BASE_URL = baseApi[envVersion];
 // console.log(BASE_URL);
@@ -62,7 +62,7 @@ const handleError = (error) => {
 // 处理成功的事件
 const handleSuccess = (response, isIntercept, isNotice) => {
   // eslint-disable-next-line
-  console.log('响应参数', response);
+  // console.log('响应参数', response);
   if (getPrototype(response) === 'object') {
     const data = response.data || {};
     if (typeof data !== 'object') {
@@ -86,7 +86,7 @@ export async function post(url, params = {}, others = {}) {
   } = others;
 
   // eslint-disable-next-line
-  console.log('请求参数', ISALIPAYDD, BASE_URL + url, JSON.stringify(params));
+  // console.log('请求参数', ISALIPAYDD, BASE_URL + url, JSON.stringify(params));
   const options = {
     url: BASE_URL + url,
     method: 'POST',

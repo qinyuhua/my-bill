@@ -1,4 +1,6 @@
 import * as service from './service';
+import Taro from '@tarojs/taro';
+import { addZero } from '@/utils/utils';
 
 export default {
   namespace: 'billInfo',
@@ -40,6 +42,25 @@ export default {
     *fetchAllList({ payload, callback }, { call }) {
       const response = yield call(service.queryAllList, payload);
       const { data } = response;
+
+      const y = new Date().getFullYear();
+      const m = addZero(new Date().getMonth() + 1);
+      const d = addZero(new Date().getDate());
+      const date = `${y}${m}${d}`;
+
+      try {
+        const value = Taro.getStorageSync(date)
+        if (!value) {
+          Taro.clearStorage();
+          Taro.setStorage({
+            key: `${date}`,
+            data: data
+          })
+        }
+      } catch (e) {
+        console.log('1----------------------- catch')
+      }
+
       if (callback) callback(data);
     },
   },

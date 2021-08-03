@@ -6,7 +6,9 @@ import './app.scss';
 
 const { stores } = dva;
 class App extends Component {
+
   render() {
+
     return <Provider store={stores}>{this.props.children}</Provider>;
   }
 }

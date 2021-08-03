@@ -19,7 +19,7 @@ const Index = (props, ref) => {
   const handleQueryAll = () => {
     const { dispatch } = props;
     const startDate = new Date(`${curYear}-01-01`);
-    const endDate = new Date();
+    const endDate = new Date(`${curYear}-12-30`);
     dispatch({
       type: 'billInfo/fetchIncomeAmount',
       payload: {
